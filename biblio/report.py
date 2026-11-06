@@ -193,13 +193,20 @@ OUTCOME_LABELS = {
 ASSOCIATION_LABELS = {"associated": "associé", "no_association": "pas d'association", "mixed": "résultats mixtes"}
 
 
+def is_pooled_modifier(r):
+    """Modificateur calculé hors des seuls porteurs C9 (règle 21) : affiché, mais pas compté."""
+    pop = (r["population"] or "").strip().lower()
+    return pop == "mixed" or pop.startswith("poolé") or pop.startswith("poole")
+
+
 def _variability(con, exports):
     rows = con.execute("SELECT m.*, a.first_author, a.year FROM modifiers m JOIN articles a USING (pmid)").fetchall()
     _csv(exports / "modifiers.csv", rows)
     L = ["# Variabilité phénotypique : facteurs modificateurs", "",
          "*Fichier généré par `python -m biblio report` : ne pas éditer à la main.*", "",
          "Pour chaque phénotype expliqué : les facteurs étudiés, avec le nombre d'études qui trouvent "
-         "une association et le nombre qui n'en trouvent pas.", ""]
+         "une association et le nombre qui n'en trouvent pas, **chez les porteurs C9**. Les résultats poolés "
+         "(porteurs et non-porteurs, ou tous gènes) sont signalés à part (« + n poolés ») et ne sont pas comptés.", ""]
     if not rows:
         L.append("*Aucun facteur extrait pour l'instant.*")
     for outcome, label in OUTCOME_LABELS.items():
@@ -212,10 +219,12 @@ def _variability(con, exports):
         for r in orows:
             groups.setdefault(r["modifier"].strip().lower(), []).append(r)
         for _, rs in sorted(groups.items(), key=lambda kv: -len(kv[1])):
-            yes = sum(r["association"] in ("associated", "mixed") for r in rs)
-            no = sum(r["association"] == "no_association" for r in rs)
+            c9 = [r for r in rs if not is_pooled_modifier(r)]
+            yes = sum(r["association"] in ("associated", "mixed") for r in c9)
+            no = sum(r["association"] == "no_association" for r in c9)
+            pooled = len(rs) - len(c9)
             refs = "; ".join(dict.fromkeys(_ref(r) for r in rs))
-            L.append(f"| {rs[0]['modifier']} | {rs[0]['modifier_type']} | {yes} / {no} | {rs[0]['effect'] or ''} | {refs} |")
+            L.append(f"| {rs[0]['modifier']} | {rs[0]['modifier_type']} | {yes} / {no}{f" (+ {pooled} poolé{'s' if pooled > 1 else ''})" if pooled else ""} | {(c9 or rs)[0]['effect'] or ''} | {refs} |")
         L.append("")
     freq = con.execute("SELECT f.*, a.first_author, a.year FROM frequencies f JOIN articles a USING (pmid) "
                        "WHERE f.kind IN ('phenotype_frequency', 'carrier_vs_noncarrier', 'carrier_vs_other_gene') "
