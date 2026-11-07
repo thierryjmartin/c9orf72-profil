@@ -194,7 +194,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
 
     <a class="card q-card" href="#incertain" style="margin-top:16px;border-color:var(--accent)">
       <span class="num">Vous avez un parent porteur ?</span><h3>Je ne sais pas si je suis porteur : que disent les études pour moi ?</h3>
-      <span class="muted small">Comment la probabilité d'être porteur change avec l'âge, ce que valent les « petits symptômes », et si l'on ressemble à son parent malade.</span>
+      <span class="muted small">Un porteur a-t-il forcément des signes ? Comment la probabilité d'être porteur change avec l'âge, ce que valent les « petits symptômes », et si l'on ressemble à son parent malade.</span>
       <span class="go">Commencer →</span></a>
 
     <h2>Ce qui ressort de la lecture</h2>
@@ -216,7 +216,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
   <!-- INCERTAIN -->
   <section class="view" id="v-incertain">
     <h1>Je ne sais pas si je suis porteur</h1>
-    <p class="lead">Un de vos parents (ou un frère, une sœur) porte l'expansion, et vous n'êtes pas testé. Trois
+    <p class="lead">Un de vos parents (ou un frère, une sœur) porte l'expansion, et vous n'êtes pas testé. Cinq
       questions reviennent souvent. Les réponses ci-dessous viennent des études, avec leurs limites.</p>
 
     <h2>1. Ma probabilité d'être porteur change-t-elle avec l'âge ?</h2>
@@ -238,10 +238,25 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
       <p class="muted small" style="margin:8px 0 0" id="calc-note"></p>
     </div>
     <div class="notice" style="margin-top:12px">Ce calcul ne tient compte que de l'âge et du lien de parenté,
-      <b>jamais des symptômes</b> (voir la question 2). Il suppose que vous n'êtes pas malade. Une consultation de
+      <b>jamais des symptômes</b> (voir la question 3). Il suppose que vous n'êtes pas malade. Une consultation de
       génétique l'affinera avec toute l'histoire familiale, et seul un test donne la réponse.</div>
 
-    <h2>2. Mes « petits symptômes » veulent-ils dire quelque chose ?</h2>
+    <h2>2. Si j'étais porteur, aurais-je forcément des signes ?</h2>
+    <p>Non. La plupart des porteurs qui ne sont pas encore malades n'ont aucun signe repérable dans la vie courante,
+      et certains restent indemnes très tard. Les différences connues se voient surtout à l'IRM ou dans le sang, en
+      moyenne sur des groupes.</p>
+    <div id="ss-synth"></div>
+    <h3 style="margin-top:18px">Les porteurs sans symptôme comparés aux non-porteurs</h3>
+    <p class="small muted" style="margin-top:0">Signes cliniques (comportement, humeur, mémoire, langage, motricité,
+      sommeil) mesurés chez des porteurs sans aucun symptôme. Les comparaisons chiffrées sont en premier.</p>
+    <div id="ss-summary"></div>
+    <div class="list" id="ss-list"></div>
+    <h3 style="margin-top:18px">Des porteurs restés indemnes tard</h3>
+    <p class="small muted" style="margin-top:0">Porteurs sans maladie à un âge avancé, jumeaux discordants, porteurs
+      trouvés parmi des témoins en bonne santé.</p>
+    <div class="list" id="ss-late"></div>
+
+    <h2>3. Mes « petits symptômes » veulent-ils dire quelque chose ?</h2>
     <p>Choisissez ce qui vous préoccupe : voici ce que les études ont trouvé chez des porteurs <b>avant</b> la
       maladie, comparés à des apparentés non porteurs. Regardez surtout les pourcentages dans les deux groupes : ils se
       recouvrent largement.</p>
@@ -266,14 +281,14 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
         ou au centre qui suit votre famille, sans attendre.</p>
     </div>
 
-    <h2>3. Est-ce que je ressemblerai à mon parent malade ?</h2>
+    <h2>4. Est-ce que je ressemblerai à mon parent malade ?</h2>
     <p>Même maladie (SLA ou DFT) ? Même âge de début ? Plus tôt d'une génération à l'autre (« anticipation ») ? Voici
       les résultats des études sur la transmission et les ressemblances familiales.</p>
     <div id="par-synth"></div>
     <div id="par-summary"></div>
     <div class="list" id="par-list"></div>
 
-    <h2>4. Puis-je faire quelque chose ?</h2>
+    <h2>5. Puis-je faire quelque chose ?</h2>
     <p>Mode de vie, activité physique, tabac, santé cardiovasculaire, études… Ce que les études ont mesuré chez des
       porteurs. Ce sont des associations observées, pas la preuve qu'agir sur ces facteurs change le risque.</p>
     <div id="vie-synth"></div>
@@ -663,6 +678,19 @@ function renderParent() {
   const list = outs.flatMap(([, l]) => l);
   pager($("#par-list"), list, m => { const d = document.createElement("div"); d.className = "item"; d.style.padding = "0 14px"; d.innerHTML = obsModifier(m); return d; }, 15);
 }
+const CLINICAL = ["psychiatrie", "comportement_personnalite", "cognition", "langage_parole", "moteur_neurophysiologie", "sommeil"];
+const UNAFFECTED = /asymptomatique|indemne|sans (maladie|SLA|atteinte)|vivants|non malade|discordan/i;
+function renderSansSignes() {
+  $("#ss-synth").innerHTML = synthBox("question:sans_signes");
+  const pct = f => /\d\s*%.*vs|vs.*\d\s*%|\d+\/\d+/.test(f.effect || "");
+  const fs = D.findings.filter(f => f.population === "presymptomatic_carriers" && CLINICAL.includes(f.domain))
+    .sort((a, b) => pct(b) - pct(a) || (b.n_carriers || 0) - (a.n_carriers || 0));
+  const ab = fs.filter(f => f.direction !== "no_difference").length;
+  $("#ss-summary").innerHTML = `<p class="small">${fs.length} constats dans ${new Set(fs.map(f => f.pmid)).size} études : ${bar2(ab, fs.length - ab)} <b>${ab}</b> trouvent une différence, <b>${fs.length - ab}</b> n'en trouvent pas. Quand une différence existe, elle est en général faible et ne concerne qu'une minorité de porteurs.</p>`;
+  pager($("#ss-list"), fs, f => { const d = document.createElement("div"); d.className = "item"; d.style.padding = "0 14px"; d.innerHTML = obsFinding(f); return d; }, 10);
+  const late = D.penetrance.filter(p => UNAFFECTED.test(p.description || ""));
+  pager($("#ss-late"), late, p => { const d = document.createElement("div"); d.className = "item"; d.style.padding = "0 14px"; d.innerHTML = obsPenetrance(p); return d; }, 10);
+}
 function renderLifestyle() {
   $("#vie-synth").innerHTML = synthBox("question:mode_de_vie");
   const ms = D.modifiers.filter(m => !m.pooled && m.modifier_type === "environment_lifestyle")
@@ -670,7 +698,7 @@ function renderLifestyle() {
   pager($("#vie-list"), ms, m => { const d = document.createElement("div"); d.className = "item"; d.style.padding = "0 14px"; d.innerHTML = obsModifier(m); return d; }, 15);
 }
 function renderIncertain() {
-  renderCalc(); renderSymptoms(); renderParent(); renderLifestyle();
+  renderCalc(); renderSansSignes(); renderSymptoms(); renderParent(); renderLifestyle();
   $("#sym-synth").innerHTML = synthBox("question:symptomes");
   $("#par-synth").innerHTML = synthBox("question:parent");
 }
