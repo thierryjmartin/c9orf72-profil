@@ -124,6 +124,8 @@ input[type=search] { width: 100%; max-width: 520px; padding: 10px 14px; border: 
 .quote { margin: 6px 0 0; padding: 6px 10px; border-left: 3px solid var(--line-strong); color: var(--muted); font-size: .88rem; font-style: italic; }
 .ref { border: 0; background: none; padding: 0; color: var(--accent); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; font-size: .9rem; }
 .more { margin-top: 12px; }
+.synth { background: var(--accent-soft); border-radius: 10px; padding: 12px 14px; margin: 10px 0; font-size: .95rem; }
+.synth b.k { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: 2px; }
 .btn { border: 1px solid var(--accent); background: var(--accent); color: var(--card); border-radius: 9px; padding: 9px 16px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
 .btn.ghost { background: transparent; color: var(--accent); }
 
@@ -245,6 +247,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
     <p>Choisissez ce qui vous préoccupe : voici ce que les études ont trouvé chez des porteurs <b>avant</b> la
       maladie, comparés à des apparentés non porteurs. Regardez surtout les pourcentages dans les deux groupes : ils se
       recouvrent largement.</p>
+    <div id="sym-synth"></div>
     <div class="controls"><div class="chips" id="sym-chips"></div></div>
     <div id="sym-summary"></div>
     <div class="list" id="sym-list"></div>
@@ -268,8 +271,15 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
     <h2>3. Est-ce que je ressemblerai à mon parent malade ?</h2>
     <p>Même maladie (SLA ou DFT) ? Même âge de début ? Plus tôt d'une génération à l'autre (« anticipation ») ? Voici
       les résultats des études sur la transmission et les ressemblances familiales.</p>
+    <div id="par-synth"></div>
     <div id="par-summary"></div>
     <div class="list" id="par-list"></div>
+
+    <h2>4. Puis-je faire quelque chose ?</h2>
+    <p>Mode de vie, activité physique, tabac, santé cardiovasculaire, études… Ce que les études ont mesuré chez des
+      porteurs. Ce sont des associations observées, pas la preuve qu'agir sur ces facteurs change le risque.</p>
+    <div id="vie-synth"></div>
+    <div class="list" id="vie-list"></div>
   </section>
 
   <!-- PÉNÉTRANCE -->
@@ -318,6 +328,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
       <div class="chart" id="sig-years"></div>
     </div>
     <h2 id="sig-title">Les signes</h2>
+    <div id="sig-domain-synth"></div>
     <div class="controls">
       <input type="search" id="sig-search" placeholder="Chercher un signe (thalamus, NfL, apathie…)" aria-label="Chercher un signe">
     </div>
@@ -338,6 +349,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
         positive est un indice, pas une preuve.</p>
       <div class="chips" id="var-outcomes"></div>
       <div class="legend" style="margin-top:12px"><span><i class="sq" style="background:var(--s1)"></i>association trouvée</span><span><i class="sq" style="background:var(--neutral)"></i>pas d'association</span></div>
+      <div id="var-synth"></div>
       <div class="list" id="var-list" style="margin-top:8px"></div>
     </div>
     <h2>Le spectre des maladies chez les porteurs</h2>
@@ -470,6 +482,18 @@ function openStudy(pmid) {
 function closeDrawer() { $("#drawer").classList.remove("open"); $("#drawer").setAttribute("aria-hidden", "true"); }
 $("#drawer .shade").onclick = closeDrawer; $("#drawer .close").onclick = closeDrawer;
 document.addEventListener("keydown", e => { if (e.key === "Escape") { closeDrawer(); $("#pop").style.display = "none"; } });
+
+// ---------- synthèses (écrites à partir des données du sujet, vérifiées par l'audit) ----------
+const S = key => (D.syntheses || {})[key];
+function synthBox(key) {
+  const s = S(key);
+  if (!s) return "";
+  // « (Auteur 2020) » → bouton vers l'étude quand l'auteur correspond à un PMID cité
+  let html = esc(s.text);
+  for (const p of s.pmids) { const a = D.articles[p]; if (a) html = html.split(esc(`${a.a} ${a.y}`)).join(refBtn(p)); }
+  return `<div class="synth"><b class="k">En bref</b>${html}${s.stale ? '<div class="small muted" style="margin-top:4px">Des données ont été ajoutées depuis : cette synthèse sera bientôt mise à jour.</div>' : ""}</div>`;
+}
+const layOf = key => (S(key)?.lay || []).join(" ");
 
 // ---------- blocs « observation » ----------
 function quote(q) { return q ? `<p class="quote">« ${esc(q)} »</p>` : ""; }
@@ -641,7 +665,17 @@ function renderParent() {
   const list = outs.flatMap(([, l]) => l);
   pager($("#par-list"), list, m => { const d = document.createElement("div"); d.className = "item"; d.style.padding = "0 14px"; d.innerHTML = obsModifier(m); return d; }, 15);
 }
-function renderIncertain() { renderCalc(); renderSymptoms(); renderParent(); }
+function renderLifestyle() {
+  $("#vie-synth").innerHTML = synthBox("question:mode_de_vie");
+  const ms = D.modifiers.filter(m => !m.pooled && m.modifier_type === "environment_lifestyle")
+    .sort((a, b) => (a.association === "no_association") - (b.association === "no_association"));
+  pager($("#vie-list"), ms, m => { const d = document.createElement("div"); d.className = "item"; d.style.padding = "0 14px"; d.innerHTML = obsModifier(m); return d; }, 15);
+}
+function renderIncertain() {
+  renderCalc(); renderSymptoms(); renderParent(); renderLifestyle();
+  $("#sym-synth").innerHTML = synthBox("question:symptomes");
+  $("#par-synth").innerHTML = synthBox("question:parent");
+}
 
 // ---------- pénétrance ----------
 let penOutcome = "any", penGroup = "tous";
@@ -735,7 +769,7 @@ function renderSignList() {
   const by = {};
   for (const f of earlyFindings()) {
     if (sigDomain && f.domain !== sigDomain) continue;
-    if (q && !norm(f.sign + " " + f.measure + " " + f.effect).includes(q)) continue;
+    if (q && !norm(f.sign + " " + f.measure + " " + f.effect + " " + layOf(`sign:${f.domain}|${f.sign}`)).includes(q)) continue;
     (by[f.domain + "|" + f.sign] ||= []).push(f);
   }
   const signs = Object.values(by).map(fs => {
@@ -746,7 +780,8 @@ function renderSignList() {
   pager($("#sig-list"), signs, s => item(esc(s.fs[0].sign),
     `${esc(lab("domain", s.fs[0].domain))} · ${s.studies} étude${s.studies > 1 ? "s" : ""}${s.maxY != null ? ` · jusqu'à ${fmt(s.maxY, 1)} ans avant le début` : ""}`,
     `${bar2(s.ab, s.no)} <span class="small muted">${s.ab} / ${s.no}</span>`,
-    () => s.fs.map(f => obsFinding(f)).join("")));
+    () => synthBox(`sign:${s.fs[0].domain}|${s.fs[0].sign}`) + s.fs.map(f => obsFinding(f)).join("")));
+  $("#sig-domain-synth").innerHTML = sigDomain ? synthBox(`domain:${sigDomain}`) : "";
 }
 function renderYears(early, order) {
   const host = $("#sig-years"); host.innerHTML = "";
@@ -801,7 +836,8 @@ function renderVariabilite() {
   pager($("#var-list"), facs, f => item(esc(f.ms[0].modifier),
     `${f.yes + f.no} résultat${f.yes + f.no > 1 ? "s" : ""} chez des porteurs C9, ${f.studies} étude${f.studies > 1 ? "s" : ""}${f.pooled ? ` · + ${f.pooled} résultat${f.pooled > 1 ? "s" : ""} poolé${f.pooled > 1 ? "s" : ""}` : ""}`,
     `${bar2(f.yes, f.no)} <span class="small muted">${f.yes} / ${f.no}</span>`,
-    () => f.ms.map(m => obsModifier(m)).join("")), 30);
+    () => synthBox(`factor:${varOutcome}|${f.ms[0].modifier.trim().toLowerCase()}`) + f.ms.map(m => obsModifier(m)).join("")), 30);
+  $("#var-synth").innerHTML = synthBox(`outcome:${varOutcome}`);
   renderSpectrum();
 }
 function renderSpectrum() {
@@ -822,7 +858,7 @@ let exType = "tout", INDEX;
 function buildIndex() {
   INDEX = [];
   const add = (type, o, text, render) => INDEX.push({ type, text: norm(text + " " + o.pmid + " " + ref(o.pmid)), render });
-  for (const f of D.findings) add("findings", f, [f.sign, f.measure, f.effect, f.timing, lab("domain", f.domain)].join(" "), () => obsFinding(f));
+  for (const f of D.findings) add("findings", f, [f.sign, f.measure, f.effect, f.timing, lab("domain", f.domain), layOf(`sign:${f.domain}|${f.sign}`)].join(" "), () => obsFinding(f));
   for (const p of D.penetrance) add("penetrance", p, [p.population, p.method, p.description].join(" "), () => obsPenetrance(p));
   for (const m of D.modifiers) add("modifiers", m, [m.modifier, m.effect, m.population, lab("outcome", m.outcome)].join(" "), () => obsModifier(m));
   for (const f of D.frequencies) add("frequencies", f, [f.feature, f.grp, f.comparison].join(" "), () => obsFrequency(f));
