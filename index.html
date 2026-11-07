@@ -147,6 +147,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
     <a class="brand" href="#accueil">C9orf72 <span>en clair</span></a>
     <nav class="tabs" aria-label="Sections">
       <a href="#accueil">Accueil</a>
+      <a href="#incertain">Je ne sais pas si je suis porteur</a>
       <a href="#penetrance">Qui tombe malade ?</a>
       <a href="#signes">Signes avant la maladie</a>
       <a href="#variabilite">Pourquoi des maladies différentes ?</a>
@@ -191,6 +192,11 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
         <span class="go">Voir les facteurs →</span></a>
     </div>
 
+    <a class="card q-card" href="#incertain" style="margin-top:16px;max-width:none;border-color:var(--accent)">
+      <span class="num">Vous avez un parent porteur ?</span><h3>Je ne sais pas si je suis porteur : que disent les études pour moi ?</h3>
+      <span class="muted small">Comment la probabilité d'être porteur change avec l'âge, ce que valent les « petits symptômes », et si l'on ressemble à son parent malade.</span>
+      <span class="go">Commencer →</span></a>
+
     <h2>Ce qui ressort de la lecture</h2>
     <ol class="keypoints" id="keypoints"></ol>
 
@@ -205,6 +211,65 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
       <b>groupes</b> : elles ne permettent pas de prédire ce qui arrivera à une personne. Pour toute question sur
       un risque familial ou un test génétique, la bonne porte d'entrée est une consultation de génétique.</div>
     <p style="margin-top:20px"><a class="btn ghost" href="profil.html">Questionnaire personnel (calcul dans votre navigateur) →</a></p>
+  </section>
+
+  <!-- INCERTAIN -->
+  <section class="view" id="v-incertain">
+    <h1>Je ne sais pas si je suis porteur</h1>
+    <p class="lead">Un de vos parents (ou un frère, une sœur) porte l'expansion, et vous n'êtes pas testé. Trois
+      questions reviennent souvent. Les réponses ci-dessous viennent des études, avec leurs limites.</p>
+
+    <h2>1. Ma probabilité d'être porteur change-t-elle avec l'âge ?</h2>
+    <div class="card">
+      <p style="margin-top:0">Oui. Au départ, elle est de 50 % si votre père ou votre mère est porteur. Plus on avance
+        en âge sans être malade, plus elle baisse, puisqu'une partie des porteurs l'aurait déjà été. C'est le calcul
+        que fait une consultation de génétique (<button class="g" data-g="Bayes">théorème de Bayes</button>). De
+        combien elle baisse dépend de la courbe de pénétrance, et les études divergent : on montre les deux.</p>
+      <div class="controls">
+        <div class="seg" id="calc-lien" role="group" aria-label="Lien de parenté">
+          <button data-v="50" aria-pressed="true">Mon père, ma mère, un frère ou une sœur</button><button data-v="25" aria-pressed="false">Un grand-parent, un oncle ou une tante</button>
+        </div>
+      </div>
+      <label class="small muted" for="calc-age">Votre âge : <b id="calc-age-v" style="color:var(--text)">50 ans</b></label>
+      <input type="range" id="calc-age" min="20" max="90" value="50" style="width:100%;max-width:520px;accent-color:var(--accent)">
+      <div class="grid3" id="calc-out" style="margin:14px 0"></div>
+      <div class="legend" id="calc-legend"></div>
+      <div class="chart" id="calc-chart"></div>
+      <p class="muted small" style="margin:8px 0 0" id="calc-note"></p>
+    </div>
+    <div class="notice" style="margin-top:12px">Ce calcul ne tient compte que de l'âge et du lien de parenté,
+      <b>jamais des symptômes</b> (voir la question 2). Il suppose que vous n'êtes pas malade. Une consultation de
+      génétique l'affinera avec toute l'histoire familiale, et seul un test donne la réponse.</div>
+
+    <h2>2. Mes « petits symptômes » veulent-ils dire quelque chose ?</h2>
+    <p>Choisissez ce qui vous préoccupe : voici ce que les études ont trouvé chez des porteurs <b>avant</b> la
+      maladie, comparés à des apparentés non porteurs. Regardez surtout les pourcentages dans les deux groupes : ils se
+      recouvrent largement.</p>
+    <div class="controls"><div class="chips" id="sym-chips"></div></div>
+    <div id="sym-summary"></div>
+    <div class="list" id="sym-list"></div>
+    <div class="card" style="margin-top:16px">
+      <h3>Pourquoi ces résultats ne disent rien de vous</h3>
+      <ul class="small" style="margin:6px 0 0;padding-left:20px">
+        <li>Ce sont des <b>moyennes de groupe</b>, mesurées par des cliniciens avec des échelles précises, pas des
+          impressions personnelles.</li>
+        <li>Ces signes sont <b>fréquents chez les non-porteurs aussi</b> : anxiété, oublis ou baisse de moral sont
+          courants, d'autant plus quand on vit avec la maladie dans sa famille.</li>
+        <li>Les études sont petites (souvent quelques dizaines de porteurs) et beaucoup ne trouvent <b>aucune</b>
+          différence.</li>
+        <li>Aucune étude ne permet de calculer, à partir d'un symptôme, la probabilité d'être porteur : c'est pourquoi
+          ce site ne le fait pas.</li>
+      </ul>
+      <p class="small" style="margin:10px 0 0"><b>Quand consulter ?</b> Si un changement est net, durable, remarqué
+        par vos proches (comportement, caractère, langage, force musculaire, déglutition), parlez-en à votre médecin
+        ou au centre qui suit votre famille, sans attendre.</p>
+    </div>
+
+    <h2>3. Est-ce que je ressemblerai à mon parent malade ?</h2>
+    <p>Même maladie (SLA ou DFT) ? Même âge de début ? Plus tôt d'une génération à l'autre (« anticipation ») ? Voici
+      les résultats des études sur la transmission et les ressemblances familiales.</p>
+    <div id="par-summary"></div>
+    <div class="list" id="par-list"></div>
   </section>
 
   <!-- PÉNÉTRANCE -->
@@ -317,6 +382,8 @@ const GLOSSARY = {
   "présymptomatique": "Porteur de la mutation qui n'a encore aucun symptôme de la maladie.",
   "prodromique": "Porteur qui présente des signes légers (troubles discrets du comportement, de la mémoire…) sans remplir les critères de la maladie.",
   "NfL": "Neurofilaments à chaîne légère : protéine libérée quand des neurones se dégradent, mesurable dans le sang ou le liquide céphalorachidien.",
+  "Bayes": "Règle de calcul des probabilités qui met à jour un risque de départ avec une nouvelle information. Ici : 50 % au départ, mis à jour par le fait de ne pas être malade à un âge donné.",
+  "anticipation": "Début de la maladie plus précoce d'une génération à l'autre. Pour C9orf72, c'est discuté : une partie de l'effet peut venir de la façon dont les familles sont observées.",
   "biobanque": "Grande collection de données médicales et génétiques de volontaires de la population générale (par exemple l'UK Biobank, 500 000 personnes). Les porteurs y sont trouvés sans qu'on les cherche."
 };
 const COLORS = { malades: "var(--s1)", population: "var(--s2)" };
@@ -507,6 +574,74 @@ function renderHome() {
   kp.push(`<b>Tout est vérifiable.</b> Chaque constat renvoie à son article, avec la phrase de l'étude qui l'appuie. <a href="#explorer">Explorer →</a>`);
   $("#keypoints").innerHTML = kp.map((t, i) => `<li data-n="${i + 1}">${t}</li>`).join("");
 }
+
+// ---------- je ne sais pas si je suis porteur ----------
+const CURVE_COLOR = { malades: "var(--s1)", population: "var(--s2)" };
+const penAt = (pts, age) => {
+  if (age <= pts[0][0]) return pts[0][1];
+  for (let i = 1; i < pts.length; i++) if (age <= pts[i][0]) { const [a0, v0] = pts[i - 1], [a1, v1] = pts[i]; return v0 + (v1 - v0) * (age - a0) / (a1 - a0); }
+  return pts[pts.length - 1][1];
+};
+const bayes = (p0, f) => { const p = p0 / 100, q = f / 100; return 100 * p * (1 - q) / (p * (1 - q) + 1 - p); };
+let calcP0 = 50;
+function renderCalc() {
+  const age = +$("#calc-age").value;
+  $("#calc-age-v").textContent = age + " ans";
+  $("#calc-out").innerHTML = `<div class="card stat"><b>${calcP0} %</b><span>probabilité de départ (lien de parenté)</span></div>` +
+    D.curves.map(c => {
+      const f = penAt(c.points, age), last = c.points[c.points.length - 1], src = [...new Set(c.points.map(p => p[2]))];
+      return `<div class="card stat"><b style="color:${CURVE_COLOR[c.id]}">${fmt(bayes(calcP0, f))} %</b><span>à ${age} ans sans maladie, avec la courbe des ${esc(c.label)}${age > last[0] ? ` (au-delà de ${last[0]} ans : valeur à ${last[0]} ans)` : ""}. Sources : ${src.map(refBtn).join(", ")}</span></div>`;
+    }).join("");
+  $("#calc-legend").innerHTML = D.curves.map(c => `<span><i style="background:${CURVE_COLOR[c.id]}"></i>${esc(c.label)}</span>`).join("");
+  const host = $("#calc-chart"); host.innerHTML = "";
+  const W = chartW(host), H = W < 600 ? 220 : 260, m = { l: 44, r: 12, t: 10, b: 34 };
+  const xs = a => m.l + (a - 20) / 70 * (W - m.l - m.r), ys = v => H - m.b - v / Math.max(50, calcP0) * (H - m.t - m.b);
+  const s = svg("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Probabilité d'être porteur selon l'âge atteint sans maladie" }, host);
+  const ax = svg("g", { class: "axis" }, s);
+  for (let v = 0; v <= calcP0; v += calcP0 / 5) { svg("line", { x1: m.l, x2: W - m.r, y1: ys(v), y2: ys(v), class: "gridline" }, ax); svg("text", { x: m.l - 8, y: ys(v) + 4, "text-anchor": "end" }, ax).textContent = fmt(v) + " %"; }
+  for (let a = 20; a <= 90; a += W < 600 ? 20 : 10) svg("text", { x: xs(a), y: H - m.b + 20, "text-anchor": "middle" }, ax).textContent = a + " ans";
+  svg("line", { x1: xs(age), x2: xs(age), y1: m.t, y2: H - m.b, stroke: "var(--line-strong)", "stroke-dasharray": "4 4" }, s);
+  for (const c of D.curves) {
+    let d = "";
+    for (let a = 20; a <= 90; a++) d += (a === 20 ? "M" : "L") + xs(a).toFixed(1) + "," + ys(bayes(calcP0, penAt(c.points, a))).toFixed(1);
+    svg("path", { d, fill: "none", stroke: CURVE_COLOR[c.id], "stroke-width": 2 }, s);
+    svg("circle", { cx: xs(age), cy: ys(bayes(calcP0, penAt(c.points, age))), r: 6, fill: CURVE_COLOR[c.id], stroke: "var(--card)", "stroke-width": 2 }, s);
+  }
+  $("#calc-note").innerHTML = `Entre les âges donnés par les études, la courbe est interpolée en ligne droite ; avant 35 ans, aucun porteur n'était malade dans la plus grande série (${refBtn("22406228")}). La courbe « population générale » compte toute démence, y compris d'autres causes, ce qui la fait monter après 75 ans.`;
+}
+$("#calc-age").addEventListener("input", () => D && renderCalc());
+$("#calc-lien").onclick = e => { const b = e.target.closest("button"); if (!b) return; calcP0 = +b.dataset.v; for (const x of $("#calc-lien").children) x.setAttribute("aria-pressed", x === b); renderCalc(); };
+
+let symId = null;
+function renderSymptoms() {
+  const all = [...D.changes, ...D.traits];
+  if (!symId) symId = all[0].id;
+  $("#sym-chips").innerHTML = all.map(c => `<button class="chip" data-s="${c.id}" aria-pressed="${c.id === symId}">${esc(c.label)}</button>`).join("");
+  $("#sym-chips").onclick = e => { const b = e.target.closest("[data-s]"); if (b) { symId = b.dataset.s; renderSymptoms(); } };
+  const c = all.find(x => x.id === symId), rx = new RegExp(c.pattern, "i");
+  const fs = D.findings.filter(f => D.early.includes(f.population) && c.domains.includes(f.domain) && rx.test(`${f.sign} ${f.measure || ""}`));
+  const ab = fs.filter(f => f.direction !== "no_difference").length, no = fs.length - ab;
+  const pct = f => /\d\s*%.*vs|vs.*\d\s*%|\d+\/\d+/.test(f.effect || "");
+  // d'abord les comparaisons chiffrées, puis les études de groupe chez des porteurs non malades, les plus grandes en tête
+  const grp = f => f.population === "carriers_retrospective" ? 0 : 1;
+  fs.sort((a, b) => pct(b) - pct(a) || grp(b) - grp(a) || (b.n_carriers || 0) - (a.n_carriers || 0));
+  const studies = new Set(fs.map(f => f.pmid)).size;
+  $("#sym-summary").innerHTML = fs.length ? `<p class="small">${fs.length} constat${fs.length > 1 ? "s" : ""} dans ${studies} étude${studies > 1 ? "s" : ""} : ${bar2(ab, no)} <b>${ab}</b> trouvent une différence chez les porteurs, <b>${no}</b> n'en trouvent pas. Les constats avec des pourcentages dans les deux groupes sont en premier.</p>` : '<p class="muted">Aucune étude de la base n\'a mesuré ce signe chez des porteurs avant la maladie.</p>';
+  pager($("#sym-list"), fs, f => { const d = document.createElement("div"); d.className = "item"; d.style.padding = "0 14px"; d.innerHTML = obsFinding(f); return d; }, 15);
+}
+
+function renderParent() {
+  const rx = /famil|parent|g[ée]n[ée]ration|anticipation|h[ée]ritab|fratrie|apparent|transmission|m[eè]re|p[eè]re/i;
+  const ms = D.modifiers.filter(m => !m.pooled && (m.modifier_type === "parental_transmission" || rx.test(m.modifier)));
+  const by = {};
+  for (const m of ms) (by[m.outcome] ||= []).push(m);
+  const outs = Object.entries(by).sort((a, b) => b[1].length - a[1].length);
+  $("#par-summary").innerHTML = `<div class="grid4">${outs.map(([o, l]) => { const y = l.filter(m => m.association !== "no_association").length; return `<div class="card stat"><b>${y} / ${l.length - y}</b><span>${esc(lab("outcome", o))} : résultats avec / sans association</span></div>`; }).join("")}</div>
+    <p class="muted small">Attention à l'<button class="g" data-g="anticipation">anticipation</button> : dans les familles, la génération suivante est souvent observée plus tôt dans la vie, ce qui fait paraître le début plus précoce.</p>`;
+  const list = outs.flatMap(([, l]) => l);
+  pager($("#par-list"), list, m => { const d = document.createElement("div"); d.className = "item"; d.style.padding = "0 14px"; d.innerHTML = obsModifier(m); return d; }, 15);
+}
+function renderIncertain() { renderCalc(); renderSymptoms(); renderParent(); }
 
 // ---------- pénétrance ----------
 let penOutcome = "any", penGroup = "tous";
@@ -708,7 +843,7 @@ $("#ex-types").onclick = e => { const b = e.target.closest("[data-t]"); if (b) {
 let exTimer; $("#ex-search").addEventListener("input", () => { clearTimeout(exTimer); exTimer = setTimeout(renderExplorer, 150); });
 
 // ---------- navigation ----------
-const RENDER = { accueil: renderHome, penetrance: renderPenetrance, signes: renderSignes, variabilite: renderVariabilite, explorer: renderExplorer };
+const RENDER = { accueil: renderHome, incertain: renderIncertain, penetrance: renderPenetrance, signes: renderSignes, variabilite: renderVariabilite, explorer: renderExplorer };
 const done = {};
 function route() {
   const id = (location.hash.slice(1) || "accueil");
@@ -724,7 +859,7 @@ let rsTimer, lastW = innerWidth;
 addEventListener("resize", () => { clearTimeout(rsTimer); rsTimer = setTimeout(() => {
   if (Math.abs(innerWidth - lastW) < 40 || !D) return; lastW = innerWidth;
   const id = location.hash.slice(1) || "accueil";
-  if (id === "penetrance") renderPenetrance(); else if (id === "signes") renderSignes();
+  if (id === "penetrance") renderPenetrance(); else if (id === "signes") renderSignes(); else if (id === "incertain") renderCalc();
 }, 200); });
 
 // thème

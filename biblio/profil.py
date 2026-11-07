@@ -3,7 +3,9 @@
 Principes (voir aussi web/README.md) :
 - aucune probabilité n'est calculée à partir des symptômes ou des traits : les signes précoces sont des différences
   de groupe entre porteurs et témoins, sans valeur diagnostique individuelle connue ;
-- le seul calcul est mendélien (risque a priori selon le lien de parenté avec un porteur connu) ;
+- le seul calcul est mendélien (risque a priori selon le lien de parenté avec un porteur connu), corrigé par l'âge
+  atteint sans maladie à l'aide de courbes de pénétrance publiées (théorème de Bayes, comme en consultation de
+  génétique) ; les symptômes n'entrent jamais dans le calcul ;
 - tous les chiffres affichés viennent des tables (findings, penetrance, frequencies, modifiers), avec leur PMID.
 """
 import re
@@ -166,6 +168,54 @@ def prior_mendelien(a):
     return RELATIONS.get(a.get("lien_porteur"), (None, None))[1]
 
 
+# Courbes de pénétrance (SLA ou DFT) utilisées pour corriger le risque a priori par l'âge. Chaque point est une ligne
+# de la table penetrance (pmid, âge, début de la méthode). Deux courbes, parce que les estimations divergent selon le
+# recrutement : on montre les deux plutôt que d'en choisir une. Point d'ancrage commun : aucun porteur malade avant
+# 35 ans dans la série de Majounie 2012 (603 porteurs).
+CURVES = [
+    {"id": "malades", "label": "porteurs repérés à partir de malades (patients et leurs familles)",
+     "points": [("22406228", 35, ""), ("22406228", 45, ""), ("26022924", 50, ""), ("26022924", 57, ""),
+                ("26022924", 72, "")]},
+    {"id": "population", "label": "porteurs trouvés en population générale (UK Biobank)",
+     "points": [("22406228", 35, ""), ("40682810", 65, "Kaplan-Meier"), ("40682810", 70, "Kaplan-Meier"),
+                ("40682810", 75, "Kaplan-Meier"), ("40682810", 80, "Kaplan-Meier (SLA ou démence toutes causes)")]},
+]
+
+
+def courbes(con):
+    """Points (âge, % de porteurs malades, ligne source) de chaque courbe, lus dans la table penetrance."""
+    out = []
+    for c in CURVES:
+        pts = []
+        for pmid, age, method in c["points"]:
+            rows = [r for r in _rows(con, "SELECT p.*, a.first_author, a.year FROM penetrance p JOIN articles a "
+                                          "USING (pmid) WHERE p.pmid=? AND p.age=? AND p.outcome='any' "
+                                          "AND p.cumulative_risk IS NOT NULL", (pmid, age))
+                    if (r["method"] or "").startswith(method)]
+            if rows:
+                pts.append((age, rows[0]["cumulative_risk"], rows[0]))
+        if len(pts) >= 2:
+            out.append({"id": c["id"], "label": c["label"], "points": pts})
+    return out
+
+
+def penetrance_a(points, age):
+    """% de porteurs malades à cet âge : interpolation linéaire, constante au-delà du dernier point publié."""
+    if age <= points[0][0]:
+        return points[0][1]
+    for (a0, v0, _), (a1, v1, _) in zip(points, points[1:]):
+        if age <= a1:
+            return v0 + (v1 - v0) * (age - a0) / (a1 - a0)
+    return points[-1][1]
+
+
+def prior_age(p0, penetrance):
+    """Probabilité (%) d'être porteur sachant qu'on n'est pas malade, à partir du risque a priori p0 (%) et de la
+    pénétrance (%) à l'âge atteint : p0·(1−F) / (p0·(1−F) + (1−p0))."""
+    p, f = p0 / 100, penetrance / 100
+    return 100 * p * (1 - f) / (p * (1 - f) + 1 - p)
+
+
 def _section_genetique(con, a, st, detail):
     items, texte = [], ""
     age = a.get("age")
@@ -190,10 +240,20 @@ def _section_genetique(con, a, st, detail):
         else:
             texte = ("Avec ce lien de parenté, le risque dépend de qui, entre vos parents, porte l'expansion : "
                      "seul un arbre généalogique examiné en consultation de génétique permet de l'estimer. ")
-        texte += ("Ce risque diminue quand on avance en âge sans symptôme, car la plupart des porteurs qui tombent "
-                  "malades le font avant 70-75 ans.")
-        if age:
-            texte += f" Vous avez {age} ans : les données ci-dessous situent ce que cela change."
+        texte += ("Ce risque diminue quand on avance en âge sans être malade, puisqu'une partie des porteurs l'aurait "
+                  "déjà été. De combien, cela dépend de la courbe de pénétrance retenue, et les études divergent : "
+                  "voici le calcul avec les deux principales.")
+        if p and age:
+            for c in courbes(con):
+                f = penetrance_a(c["points"], age)
+                last = c["points"][-1]
+                note = (f" (au-delà de {_fmt(last[0], 0)} ans, l'étude ne donne plus de chiffre : valeur à "
+                        f"{_fmt(last[0], 0)} ans gardée)") if age > last[0] else ""
+                src = max(c["points"], key=lambda pt: pt[0] if pt[0] <= age else -1)[2]
+                items.append(_item(f"À {age} ans sans maladie, avec la courbe des {c['label']} : probabilité d'être "
+                                   f"porteur d'environ {_fmt(prior_age(p, f), 0)} % (au lieu de {p} %){note}", src))
+            texte += (" Ce calcul ne tient compte que de l'âge, jamais des symptômes ; c'est celui que fait une "
+                      "consultation de génétique, qui l'affinera avec l'histoire familiale.")
         for r in _penetrance_desc(con, r"probabilit[ée] d'[êe]tre porteur|risque [àa] 10 ans"):
             items.append(_item(r["description"], r))
     elif st in ("antecedents", "antecedents_faibles"):

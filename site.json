@@ -1,5 +1,30 @@
 {
 "stats":{"screened":10093,"read":5536,"studies":903,"fulltext":532,"findings":1132,"penetrance":130,"modifiers":859,"frequencies":1953,"early_findings":768,"updated":"2026-11-07"},
+"curves":[
+{"id":"malades","label":"porteurs repérés à partir de malades (patients et leurs familles)","points":[[35,0.0,"22406228"],[45,10.0,"22406228"],[50,19.4,"26022924"],[57,50.6,"26022924"],[72,96.1,"26022924"]]},
+{"id":"population","label":"porteurs trouvés en population générale (UK Biobank)","points":[[35,0.0,"22406228"],[65,7.7,"40682810"],[70,19.0,"40682810"],[75,39.0,"40682810"],[80,66.0,"40682810"]]}
+],
+"changes":[
+{"id":"apathie","label":"Perte d'intérêt, d'élan ou d'initiative (apathie)","domains":["comportement_personnalite"],"pattern":"apath|motivation|initiative"},
+{"id":"desinhibition","label":"Désinhibition, impulsivité, remarques déplacées","domains":["comportement_personnalite"],"pattern":"d[ée]sinhib|impuls"},
+{"id":"empathie","label":"Moins d'empathie ou de chaleur envers les proches","domains":["comportement_personnalite","cognition"],"pattern":"empath|cognition sociale|th[ée]orie de l'esprit|[ée]motion"},
+{"id":"compulsions","label":"Rituels, rigidité ou comportements répétitifs nouveaux","domains":["comportement_personnalite"],"pattern":"compuls|st[ée]r[ée]otyp|rigid|r[ée]p[ée]tit|ritu"},
+{"id":"alimentation","label":"Changement des habitudes alimentaires (sucré, appétit accru)","domains":["comportement_personnalite","autonome_metabolique"],"pattern":"aliment|hyperphag|app[ée]tit|sucr"},
+{"id":"memoire","label":"Oublis plus fréquents","domains":["cognition"],"pattern":"m[ée]moire|mn[ée]si"},
+{"id":"executif","label":"Difficultés à organiser, planifier, mener plusieurs tâches","domains":["cognition"],"pattern":"ex[ée]cut|planif|flexib|attention"},
+{"id":"langage","label":"Difficultés à trouver ses mots ou à comprendre","domains":["langage_parole","cognition"],"pattern":"langage|fluence|d[ée]nomin|parole|mot"},
+{"id":"moteur","label":"Faiblesse, crampes, contractions musculaires, gêne pour parler ou avaler","domains":["moteur_neurophysiologie"],"pattern":"moteur|motric|force|fascicul|crampe|bulbaire|faiblesse|dext[ée]rit"},
+{"id":"psychose","label":"Hallucinations, idées inhabituelles ou délirantes","domains":["psychiatrie"],"pattern":"psycho|hallucin|d[ée]lir"},
+{"id":"humeur","label":"Anxiété ou dépression nouvelles","domains":["psychiatrie"],"pattern":"anxi|d[ée]press|humeur|affectif"},
+{"id":"sommeil","label":"Sommeil nettement modifié","domains":["sommeil"],"pattern":"sommeil|fuseau|nrem|[ée]veil"},
+{"id":"poids","label":"Perte de poids inexpliquée","domains":["autonome_metabolique"],"pattern":"poids|imc|graisse|masse|m[ée]tabol"}
+],
+"traits":[
+{"id":"rigidite","label":"Besoin de routine, rigidité depuis toujours","domains":["developpement_vie_entiere","comportement_personnalite"],"pattern":"rigid|routine|autis|obsess"},
+{"id":"social","label":"Difficultés relationnelles ou d'empathie depuis toujours","domains":["developpement_vie_entiere","comportement_personnalite"],"pattern":"social|empath|autis|personnalit"},
+{"id":"psy_perso","label":"Antécédent personnel de trouble psychiatrique (bipolarité, psychose…)","domains":["psychiatrie"],"pattern":"psycho|bipolaire|schizo|psychiatr"},
+{"id":"anxiete","label":"Anxiété importante depuis l'adolescence","domains":["psychiatrie","developpement_vie_entiere"],"pattern":"anxi"}
+],
 "labels":{"domain":{"cognition":"Cognition","comportement_personnalite":"Comportement et personnalité","psychiatrie":"Psychiatrie","langage_parole":"Langage et parole","moteur_neurophysiologie":"Motricité et neurophysiologie","sommeil":"Sommeil","autonome_metabolique":"Système autonome et métabolisme","imagerie_structurelle":"Imagerie structurelle","imagerie_fonctionnelle_eeg":"Imagerie fonctionnelle et EEG","biomarqueurs_fluides":"Biomarqueurs (LCR, sang)","sensoriel_oculomoteur":"Sensoriel et oculomoteur","developpement_vie_entiere":"Neurodéveloppement et trajectoire de vie","autre":"Autre"},"outcome":{"penetrance":"Pénétrance (malade ou non)","age_at_onset":"Âge de début","phenotype_als_vs_ftd":"Phénotype SLA / DFT / SLA-DFT","psychiatric_presentation":"Présentation psychiatrique","cognitive_behavioural_profile":"Profil cognitif et comportemental","survival_progression":"Survie et progression","neuropathology":"Neuropathologie","imaging_pattern":"Profil d'imagerie","other":"Autre"},"ascertainment":{"familial":"familles","population":"population générale","clinic":"consultations","mixed":"mixte"},"population":{"presymptomatic_carriers":"porteurs sans symptôme","prodromal_carriers":"porteurs avec signes légers (prodromiques)","carriers_retrospective":"porteurs devenus malades (signes reconstitués avant le début)","symptomatic_carriers":"porteurs malades","relatives_untested":"apparentés non testés","noncarrier_relatives":"apparentés non porteurs","mixed":"groupe mélangé (tous gènes ou non séparé)"},"confidence":{"high":"élevée","medium":"moyenne","low":"faible"},"freq_kind":{"carrier_frequency":"fréquence de l'expansion","phenotype_frequency":"fréquence d'un trait chez les porteurs","carrier_vs_noncarrier":"malades C9 comparés aux malades non porteurs","carrier_vs_other_gene":"porteurs C9 comparés aux autres gènes"}},
 "early":[
 "presymptomatic_carriers",
