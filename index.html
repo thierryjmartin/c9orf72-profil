@@ -34,19 +34,18 @@ html { scroll-padding-top: 72px; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 a { color: var(--accent); }
 button { font: inherit; color: inherit; }
-.wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
 
 /* navigation */
 header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 header.top .wrap { display: flex; align-items: center; gap: 16px; min-height: 56px; }
 .brand { font-weight: 750; letter-spacing: -.01em; text-decoration: none; color: var(--text); white-space: nowrap; }
 .brand span { color: var(--accent); }
-nav.tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; flex: 1; }
+nav.tabs { display: flex; flex-wrap: wrap; gap: 2px; flex: 1; justify-content: flex-end; }
 nav.tabs::-webkit-scrollbar { display: none; }
-nav.tabs a { text-decoration: none; color: var(--muted); padding: 8px 12px; border-radius: 8px; white-space: nowrap; font-size: .95rem; }
+nav.tabs a { text-decoration: none; color: var(--muted); padding: 7px 9px; border-radius: 8px; white-space: nowrap; font-size: .93rem; }
 nav.tabs a:hover { color: var(--text); background: var(--accent-soft); }
 nav.tabs a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); font-weight: 650; }
-.theme-btn { border: 1px solid var(--line); background: var(--card); border-radius: 8px; padding: 6px 10px; cursor: pointer; }
 
 main { padding: 28px 0 80px; }
 section.view { display: none; }
@@ -54,12 +53,11 @@ section.view.active { display: block; }
 h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.15; letter-spacing: -.02em; margin: 8px 0 12px; }
 h2 { font-size: 1.35rem; letter-spacing: -.01em; margin: 36px 0 10px; }
 h3 { font-size: 1.05rem; margin: 0 0 6px; }
-.lead { font-size: 1.12rem; color: var(--muted); max-width: 720px; margin: 0 0 20px; }
-p { max-width: 720px; }
+.lead { font-size: 1.12rem; color: var(--muted); margin: 0 0 20px; }
 .muted { color: var(--muted); }
 .small { font-size: .88rem; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
-.notice { background: var(--warn-soft); border-left: 4px solid var(--warn); padding: 12px 16px; border-radius: 8px; font-size: .95rem; max-width: 760px; }
+.notice { background: var(--warn-soft); border-left: 4px solid var(--warn); padding: 12px 16px; border-radius: 8px; font-size: .95rem; }
 .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 .grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 .q-card { text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 6px; transition: border-color .15s, transform .15s; }
@@ -69,7 +67,7 @@ p { max-width: 720px; }
 .stat { padding: 14px 16px; }
 .stat b { display: block; font-size: 1.6rem; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
 .stat span { color: var(--muted); font-size: .88rem; }
-.keypoints { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; max-width: 760px; }
+.keypoints { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
 .keypoints li { padding: 12px 16px 12px 44px; position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
 .keypoints li::before { content: attr(data-n); position: absolute; left: 14px; top: 12px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: .78rem; font-weight: 700; display: grid; place-items: center; }
 
@@ -88,7 +86,7 @@ p { max-width: 720px; }
 .chip { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 5px 12px; cursor: pointer; font-size: .9rem; color: var(--muted); }
 .chip[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); font-weight: 600; }
 .chip .n { opacity: .7; font-variant-numeric: tabular-nums; margin-left: 4px; }
-input[type=search] { width: 100%; max-width: 520px; padding: 10px 14px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--card); color: var(--text); font: inherit; }
+input[type=search] { width: 100%; padding: 10px 14px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--card); color: var(--text); font: inherit; }
 
 /* graphiques */
 .chart { width: 100%; position: relative; }
@@ -138,6 +136,8 @@ input[type=search] { width: 100%; max-width: 520px; padding: 10px 14px; border: 
 footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: .9rem; }
 .loading { padding: 60px 0; text-align: center; color: var(--muted); }
 @media (max-width: 640px) {
+  header.top .wrap { flex-direction: column; align-items: stretch; gap: 0; padding-top: 8px; }
+  nav.tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 6px; }
   .item > button.head { grid-template-columns: 1fr; }
   .bar2 { width: 90px; }
 }
@@ -148,15 +148,13 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
   <div class="wrap">
     <a class="brand" href="#accueil">C9orf72 <span>en clair</span></a>
     <nav class="tabs" aria-label="Sections">
-      <a href="#accueil">Accueil</a>
-      <a href="#incertain">Je ne sais pas si je suis porteur</a>
+      <a href="#incertain">Pas testé ?</a>
       <a href="#penetrance">Qui tombe malade ?</a>
-      <a href="#signes">Signes avant la maladie</a>
-      <a href="#variabilite">Pourquoi des maladies différentes ?</a>
+      <a href="#signes">Signes avant</a>
+      <a href="#variabilite">Maladies différentes</a>
       <a href="#explorer">Explorer</a>
       <a href="profil.html">Questionnaire</a>
     </nav>
-    <button class="theme-btn" id="theme" aria-label="Changer de thème" title="Thème clair / sombre">◐</button>
   </div>
 </header>
 
@@ -169,7 +167,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
     <p class="lead">Une lecture systématique des études publiées, expliquée simplement. Chaque chiffre renvoie à
       l'article d'où il vient : vous pouvez rester en surface ou creuser jusqu'à la phrase de l'étude.</p>
 
-    <div class="card" style="max-width:760px">
+    <div class="card">
       <h3>En deux mots</h3>
       <p style="margin:0 0 8px">Dans le gène <i>C9orf72</i>, un petit motif d'ADN (GGGGCC) est normalement répété
         quelques fois. Chez certaines personnes, il est répété des centaines ou des milliers de fois : c'est
@@ -194,7 +192,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
         <span class="go">Voir les facteurs →</span></a>
     </div>
 
-    <a class="card q-card" href="#incertain" style="margin-top:16px;max-width:none;border-color:var(--accent)">
+    <a class="card q-card" href="#incertain" style="margin-top:16px;border-color:var(--accent)">
       <span class="num">Vous avez un parent porteur ?</span><h3>Je ne sais pas si je suis porteur : que disent les études pour moi ?</h3>
       <span class="muted small">Comment la probabilité d'être porteur change avec l'âge, ce que valent les « petits symptômes », et si l'on ressemble à son parent malade.</span>
       <span class="go">Commencer →</span></a>
@@ -233,7 +231,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
         </div>
       </div>
       <label class="small muted" for="calc-age">Votre âge : <b id="calc-age-v" style="color:var(--text)">50 ans</b></label>
-      <input type="range" id="calc-age" min="20" max="90" value="50" style="width:100%;max-width:520px;accent-color:var(--accent)">
+      <input type="range" id="calc-age" min="20" max="90" value="50" style="width:100%;accent-color:var(--accent)">
       <div class="grid3" id="calc-out" style="margin:14px 0"></div>
       <div class="legend" id="calc-legend"></div>
       <div class="chart" id="calc-chart"></div>
@@ -897,14 +895,6 @@ addEventListener("resize", () => { clearTimeout(rsTimer); rsTimer = setTimeout((
   const id = location.hash.slice(1) || "accueil";
   if (id === "penetrance") renderPenetrance(); else if (id === "signes") renderSignes(); else if (id === "incertain") renderCalc();
 }, 200); });
-
-// thème
-$("#theme").onclick = () => {
-  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  document.documentElement.dataset.theme = dark ? "light" : "dark";
-  try { localStorage.setItem("theme", document.documentElement.dataset.theme); } catch (e) {}
-};
-try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 
 fetch("site.json").then(r => r.json()).then(d => {
   D = d; $("#loading").remove(); route();
