@@ -6,6 +6,42 @@
 <title>C9orf72 en clair</title>
 <link rel="canonical" href="https://thierryjmartin.github.io/c9orf72-profil/">
 <meta name="description" content="Ce que la recherche dit de l'expansion C9orf72 (SLA, démence frontotemporale) : qui tombe malade, quels signes avant, pourquoi des maladies différentes. Chaque chiffre renvoie à son article.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="C9orf72 en clair">
+<meta property="og:title" content="C9orf72 en clair">
+<meta property="og:description" content="Ce que la recherche dit de l'expansion C9orf72 (SLA, démence frontotemporale), en langage courant. Chaque chiffre renvoie à son article.">
+<meta property="og:url" content="https://thierryjmartin.github.io/c9orf72-profil/">
+<meta property="og:locale" content="fr_FR">
+<link rel="icon" href="img/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="img/favicon-96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="img/favicon-48.png" sizes="48x48">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#2f5d8a">
+<meta property="og:image" content="https://thierryjmartin.github.io/c9orf72-profil/img/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+header.top .bar { max-width: 1080px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; gap: 20px;
+  min-height: 56px; }
+header.top .brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 750; letter-spacing: -.01em;
+  text-decoration: none; color: var(--text); white-space: nowrap; }
+header.top .brand img { width: 26px; height: 26px; border-radius: 6px; }
+header.top .brand em { font-style: normal; color: var(--accent); }
+nav.tabs { display: flex; gap: 2px; min-width: 0; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+nav.tabs::-webkit-scrollbar { display: none; }
+nav.tabs a { text-decoration: none; color: var(--muted); padding: 6px 9px; border-radius: 8px; white-space: nowrap;
+  font-size: .9rem; line-height: 1.4; }
+nav.tabs a:hover { color: var(--text); background: var(--accent-soft); }
+nav.tabs a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); font-weight: 650; }
+nav.tabs .sep { width: 1px; background: var(--line); margin: 6px 4px; flex: none; }
+@media (max-width: 960px) {
+  header.top .bar { flex-direction: column; align-items: stretch; gap: 2px; padding-top: 8px; }
+  nav.tabs { margin: 0 -16px; padding: 0 12px 6px; }
+}
+</style>
 <style>
 :root {
   color-scheme: light;
@@ -37,17 +73,7 @@ a { color: var(--accent); }
 button { font: inherit; color: inherit; }
 .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
 
-/* navigation */
-header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-header.top .wrap { display: flex; align-items: center; gap: 16px; min-height: 56px; }
-.brand { font-weight: 750; letter-spacing: -.01em; text-decoration: none; color: var(--text); white-space: nowrap; }
-.brand span { color: var(--accent); }
-nav.tabs { display: flex; flex-wrap: wrap; gap: 2px; flex: 1; justify-content: flex-end; }
-nav.tabs::-webkit-scrollbar { display: none; }
-nav.tabs a { text-decoration: none; color: var(--muted); padding: 7px 9px; border-radius: 8px; white-space: nowrap; font-size: .93rem; }
-nav.tabs a:hover { color: var(--text); background: var(--accent-soft); }
-nav.tabs a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); font-weight: 650; }
-
+/* barre du haut : biblio/pages.py (HEADER_CSS) */
 main { padding: 28px 0 80px; }
 section.view { display: none; }
 section.view.active { display: block; }
@@ -137,8 +163,6 @@ input[type=search] { width: 100%; padding: 10px 14px; border: 1px solid var(--li
 footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: .9rem; }
 .loading { padding: 60px 0; text-align: center; color: var(--muted); }
 @media (max-width: 640px) {
-  header.top .wrap { flex-direction: column; align-items: stretch; gap: 0; padding-top: 8px; }
-  nav.tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 6px; }
   .item > button.head { grid-template-columns: 1fr; }
   .bar2 { width: 90px; }
 }
@@ -146,14 +170,15 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
 </head>
 <body>
 <header class="top">
-  <div class="wrap">
-    <a class="brand" href="#accueil">C9orf72 <span>en clair</span></a>
+  <div class="bar">
+    <a class="brand" href="#accueil"><img src="img/favicon-96.png" alt=""><span>C9orf72 <em>en clair</em></span></a>
     <nav class="tabs" aria-label="Sections">
       <a href="#incertain">Pas testé ?</a>
       <a href="#penetrance">Qui tombe malade ?</a>
       <a href="#signes">Signes avant</a>
       <a href="#variabilite">Maladies différentes</a>
       <a href="#explorer">Explorer</a>
+      <span class="sep" aria-hidden="true"></span>
       <a href="s/index.html">Synthèses</a>
       <a href="profil.html">Questionnaire</a>
     </nav>

@@ -12,6 +12,36 @@
 <meta property="og:description" content="Un enfant ne reproduit pas forcément la maladie de son parent : dans une même famille, on trouve des formes touchant surtout les muscles (SLA), surtout le…">
 <meta property="og:url" content="https://thierryjmartin.github.io/c9orf72-profil/s/question-parent.html">
 <meta property="og:locale" content="fr_FR">
+<link rel="icon" href="../img/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="../img/favicon-96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="../img/favicon-48.png" sizes="48x48">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta name="theme-color" content="#2f5d8a">
+<meta property="og:image" content="https://thierryjmartin.github.io/c9orf72-profil/img/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+header.top .bar { max-width: 1080px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; gap: 20px;
+  min-height: 56px; }
+header.top .brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 750; letter-spacing: -.01em;
+  text-decoration: none; color: var(--text); white-space: nowrap; }
+header.top .brand img { width: 26px; height: 26px; border-radius: 6px; }
+header.top .brand em { font-style: normal; color: var(--accent); }
+nav.tabs { display: flex; gap: 2px; min-width: 0; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+nav.tabs::-webkit-scrollbar { display: none; }
+nav.tabs a { text-decoration: none; color: var(--muted); padding: 6px 9px; border-radius: 8px; white-space: nowrap;
+  font-size: .9rem; line-height: 1.4; }
+nav.tabs a:hover { color: var(--text); background: var(--accent-soft); }
+nav.tabs a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); font-weight: 650; }
+nav.tabs .sep { width: 1px; background: var(--line); margin: 6px 4px; flex: none; }
+@media (max-width: 960px) {
+  header.top .bar { flex-direction: column; align-items: stretch; gap: 2px; padding-top: 8px; }
+  nav.tabs { margin: 0 -16px; padding: 0 12px 6px; }
+}
+</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MedicalWebPage", "name": "Est-ce que je ressemblerai à mon parent malade (maladie, âge de début, anticipation) ?", "description": "Un enfant ne reproduit pas forcément la maladie de son parent : dans une même famille, on trouve des formes touchant surtout les muscles (SLA), surtout le…", "inLanguage": "fr", "url": "https://thierryjmartin.github.io/c9orf72-profil/s/question-parent.html", "about": {"@type": "MedicalCondition", "name": "Expansion C9orf72 (SLA, démence frontotemporale)"}, "keywords": "comme mon père, comme ma mère, héréditaire, même âge que mon parent, plus tôt à chaque génération"}</script>
 <style>
 :root { color-scheme: light; --bg: #f7f6f2; --card: #ffffff; --text: #1f2328; --muted: #5b6370; --line: #e2dfd6;
@@ -25,12 +55,7 @@
 body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 a { color: var(--accent); }
 .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
-header { border-bottom: 1px solid var(--line); }
-header .wrap { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; min-height: 56px; }
-.brand { font-weight: 750; text-decoration: none; color: var(--text); }
-.brand span { color: var(--accent); }
-header nav { display: flex; flex-wrap: wrap; gap: 12px; font-size: .93rem; }
-main { padding: 24px 0 64px; }
+main { padding: 32px 0 64px; }
 h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.2; letter-spacing: -.02em; margin: 8px 0 16px; }
 h2 { font-size: 1.15rem; margin: 32px 0 8px; }
 .synth { background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; font-size: 1.05rem; }
@@ -43,11 +68,21 @@ footer { border-top: 1px solid var(--line); padding: 16px 0 32px; font-size: .88
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <a class="brand" href="../index.html">C9orf72 <span>en clair</span></a>
-  <nav><a href="index.html">Toutes les synthèses</a><a href="../index.html#signes">Signes avant</a>
-  <a href="../index.html#variabilite">Maladies différentes</a><a href="../index.html#penetrance">Qui tombe malade ?</a></nav>
-</div></header>
+<header class="top">
+  <div class="bar">
+    <a class="brand" href="../index.html"><img src="../img/favicon-96.png" alt=""><span>C9orf72 <em>en clair</em></span></a>
+    <nav class="tabs" aria-label="Sections">
+      <a href="../index.html#incertain">Pas testé ?</a>
+      <a href="../index.html#penetrance">Qui tombe malade ?</a>
+      <a href="../index.html#signes">Signes avant</a>
+      <a href="../index.html#variabilite">Maladies différentes</a>
+      <a href="../index.html#explorer">Explorer</a>
+      <span class="sep" aria-hidden="true"></span>
+      <a href="index.html" aria-current="page">Synthèses</a>
+      <a href="../profil.html">Questionnaire</a>
+    </nav>
+  </div>
+</header>
 <main class="wrap">
 <h1>Est-ce que je ressemblerai à mon parent malade (maladie, âge de début, anticipation) ?</h1>
 <div class="synth">Un enfant ne reproduit pas forcément la maladie de son parent : dans une même famille, on trouve des formes touchant surtout les muscles (SLA), surtout le comportement et le langage (démence frontotemporale, DFT), ou les deux (Stewart 2012). Une étude décrit tout de même la forme mixte chez l&#x27;enfant dans 9 cas sur 13 lorsque le parent a une DFT ou une forme mixte, sans test statistique (Chiò 2012). L&#x27;âge de début du parent renseigne peu : l&#x27;appartenance à une famille explique 17 % des différences d&#x27;âge de début dans la plus grande étude, sur 1433 porteurs malades (Moore 2020), une autre lui trouve un poids plus élevé (Barbier 2017), et l&#x27;écart atteint jusqu&#x27;à 18 ans au sein d&#x27;une même famille (Stewart 2012). Sur l&#x27;anticipation, c&#x27;est-à-dire un début plus précoce à chaque génération, 12 résultats sur 17 vont dans ce sens, 3 sont partagés et 2 ne trouvent rien ; l&#x27;écart est par exemple de 7 ans dans une série de familles (Chiò 2012). Mais un écart semblable s&#x27;observe dans des familles où la mutation est stable, si bien que des auteurs y voient surtout un biais d&#x27;observation (Moore 2020, Barbier 2017). La mutation ne s&#x27;allonge pas toujours en passant à l&#x27;enfant : elle a raccourci dans 10 transmissions sur 17 dans une étude (Jackson 2020). Avoir ou non des antécédents familiaux change peu l&#x27;âge de début dans une série de 1099 porteurs, 57,0 ans contre 58,0 ans (Murphy 2017). Beaucoup de ces résultats viennent de quelques familles ou décrivent des moyennes de groupe : ils ne disent pas ce qui arrivera à une personne donnée.</div>
