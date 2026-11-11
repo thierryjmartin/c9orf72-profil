@@ -49,6 +49,7 @@ FREQ_KINDS = [
     "phenotype_frequency",    # fréquence d'un trait chez les porteurs C9 (psychose, début bulbaire…)
     "carrier_vs_noncarrier",  # trait du phénotype C9 comparé aux malades non porteurs
     "carrier_vs_other_gene",  # trait du phénotype C9 comparé aux porteurs d'autres gènes (GRN, MAPT, SOD1…)
+    "cohort_composition",     # part des C9 parmi les porteurs recrutés d'une cohorte multigène : pas une fréquence
 ]
 
 DOMAINS = [
