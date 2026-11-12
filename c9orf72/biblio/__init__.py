@@ -4,8 +4,22 @@ Un dossier par gène (genes/<gène>/ : fiche gene.toml, branches.toml, données,
 `python3 -m biblio --gene <gène> …` ou la variable BIBLIO_GENE (C9orf72 par défaut).
 """
 import os
+import sys
 import tomllib
 from pathlib import Path
+
+# `python3 -m biblio --gene grn …` : le paquet est importé avant __main__.py (sys.argv[0] vaut alors « -m »), donc
+# l'option est lue ici, avant de fixer les chemins, puis retirée pour argparse
+if sys.argv[:1] == ["-m"]:
+    for _i, _a in enumerate(sys.argv[1:], 1):
+        if _a == "--gene" and _i + 1 < len(sys.argv):
+            os.environ["BIBLIO_GENE"] = sys.argv[_i + 1]
+            del sys.argv[_i:_i + 2]
+            break
+        if _a.startswith("--gene="):
+            os.environ["BIBLIO_GENE"] = _a.split("=", 1)[1]
+            del sys.argv[_i]
+            break
 
 ROOT = Path(__file__).resolve().parent.parent
 GENE = os.environ.get("BIBLIO_GENE", "c9orf72").lower()

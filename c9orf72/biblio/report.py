@@ -36,6 +36,7 @@ def _fmt_years(v):
 
 def generate(con):
     out_md = GENE_DIR / "syntheses" / "tableau-signes-precoces.md"
+    out_md.parent.mkdir(parents=True, exist_ok=True)
     exports = DATA / "exports"
     exports.mkdir(parents=True, exist_ok=True)
     q = lambda sql: con.execute(sql).fetchone()[0]
