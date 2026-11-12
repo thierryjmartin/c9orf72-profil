@@ -1,5 +1,7 @@
 # C9orf72 en clair
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24153922.svg)](https://doi.org/10.5281/zenodo.24153922)
+
 **Site : https://thierryjmartin.github.io/c9orf72-profil/**
 
 Ce que la recherche publiée dit de l'expansion GGGGCC du gène *C9orf72*, cause génétique la plus fréquente de
@@ -33,8 +35,15 @@ jour, sont sur la page [Méthode](https://thierryjmartin.github.io/c9orf72-profi
 
 ## Citer
 
-Chaque version de ce dépôt est archivée sur [Zenodo](https://zenodo.org), avec un identifiant DOI permanent. Le
-bouton « Cite this repository » de GitHub donne la référence ([`CITATION.cff`](CITATION.cff)).
+Les versions de ce dépôt sont archivées sur [Zenodo](https://doi.org/10.5281/zenodo.24153922), avec un identifiant
+DOI permanent :
+
+> Martin T. *C9orf72 en clair : revue systématique vivante de la littérature sur l'expansion C9orf72* [jeu de
+> données]. Zenodo. https://doi.org/10.5281/zenodo.24153922
+
+Ce DOI désigne toutes les versions et mène toujours à la plus récente ; la page Zenodo donne aussi le DOI de chaque
+version, à citer pour une analyse reproductible. Le bouton « Cite this repository » de GitHub donne la même
+référence ([`CITATION.cff`](CITATION.cff)).
 
 ## Licence
 

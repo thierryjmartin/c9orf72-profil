@@ -42,4 +42,6 @@ constitue pas un avis médical.
 ## Licence et citation
 
 CC BY 4.0 (voir `LICENSE` à la racine), sauf les citations d'articles (`quote`), qui restent la propriété de leurs
-auteurs. Citer : Martin T., *C9orf72 en clair*, avec le DOI Zenodo de la version utilisée.
+auteurs. Citer : Martin T. *C9orf72 en clair : revue systématique vivante de la littérature sur l'expansion
+C9orf72* [jeu de données]. Zenodo. https://doi.org/10.5281/zenodo.24153922 (DOI de toutes les versions ; la page Zenodo donne
+aussi celui de chaque version).
