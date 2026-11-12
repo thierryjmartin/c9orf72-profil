@@ -41,6 +41,11 @@ nav.tabs .sep { width: 1px; background: var(--line); margin: 6px 4px; flex: none
   header.top .bar { flex-direction: column; align-items: stretch; gap: 2px; padding-top: 8px; }
   nav.tabs { margin: 0 -16px; padding: 0 12px 6px; }
 }
+footer.site { border-top: 1px solid var(--line); margin-top: 40px; padding: 18px 0 36px; font-size: .88rem;
+  color: var(--muted); line-height: 1.55; }
+footer.site .bar { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+footer.site p { margin: 0 0 8px; }
+footer.site nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MedicalWebPage", "name": "Langage et parole : ce qui change chez les porteurs avant la maladie", "description": "La majorité des mesures de base ne trouvent rien : nommer des objets n'est pas plus difficile (4 constats sur 4 ; Lee 2017, Olney 2020), et la…", "inLanguage": "fr", "url": "https://thierryjmartin.github.io/c9orf72-profil/s/domaine-langage-parole.html", "about": {"@type": "MedicalCondition", "name": "Expansion C9orf72 (SLA, démence frontotemporale)"}, "keywords": "chercher ses mots, difficulté à parler, parole, bafouiller"}</script>
 <style>
@@ -64,7 +69,20 @@ h2 { font-size: 1.15rem; margin: 32px 0 8px; }
 ul.refs { padding-left: 20px; } ul.refs li { margin: 6px 0; }
 ul.subjects { padding-left: 20px; columns: 2 280px; } ul.subjects li { margin: 3px 0; break-inside: avoid; }
 .tags span { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 1px 10px; margin: 2px 4px 2px 0; font-size: .88rem; }
-footer { border-top: 1px solid var(--line); padding: 16px 0 32px; font-size: .88rem; color: var(--muted); }
+.prisma { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 28px 18px; margin: 20px 0; }
+.prisma .stage { grid-column: 1 / -1; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--accent); font-weight: 700; margin: 6px 0 -20px; }
+.prisma .box { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px;
+  font-size: .93rem; }
+.prisma .box b { font-size: 1.15rem; }
+.prisma .main { grid-column: 1; position: relative; }
+.prisma .side { grid-column: 2; background: transparent; border-style: dashed; color: var(--muted); }
+.prisma .main + .main::before, .prisma .side + .main::before { content: "↓"; position: absolute; top: -25px; left: 50%;
+  color: var(--muted); line-height: 1; font-size: 1.1rem; }
+.prisma .final { border: 2px solid var(--accent); }
+.prisma ul { margin: 4px 0 0; padding-left: 18px; }
+@media (max-width: 600px) { .prisma { grid-template-columns: 1fr; row-gap: 10px; } .prisma .side { grid-column: 1; }
+  .prisma .main + .main, .prisma .side + .main { margin-top: 18px; } .prisma .stage { margin: 10px 0 0; } }
 </style>
 </head>
 <body>
@@ -92,7 +110,15 @@ les résultats détaillés, étude par étude, sur le site</a>.</p>
 <h2>Mots associés</h2><p class="tags"><span>chercher ses mots</span><span>difficulté à parler</span><span>parole</span><span>bafouiller</span></p>
 <h2>Références citées</h2><ul class="refs"><li>Lee 2017. Network degeneration and dysfunction in presymptomatic C9ORF72 expansion carriers. <span class="muted">Neuroimage Clin</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/28337409/" rel="nofollow">PubMed 28337409</a></li><li>Olney 2020. Clinical and volumetric changes with increasing functional impairment in familial frontotemporal lobar degeneration. <span class="muted">Alzheimers Dement</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/31784375/" rel="nofollow">PubMed 31784375</a></li><li>Samra 2023. Prodromal language impairment in genetic frontotemporal dementia within the GENFI cohort. <span class="muted">J Neurol Sci</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/37348248/" rel="nofollow">PubMed 37348248</a></li><li>Moore 2022. A modified Camel and Cactus Test detects presymptomatic semantic impairment in genetic frontotemporal dementia within the GENFI cohort. <span class="muted">Appl Neuropsychol Adult</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/32024404/" rel="nofollow">PubMed 32024404</a></li><li>Poos 2022. Longitudinal Cognitive Changes in Genetic Frontotemporal Dementia Within the GENFI Cohort. <span class="muted">Neurology</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/35483895/" rel="nofollow">PubMed 35483895</a></li><li>Poos 2024. Neuropsychological Profiles in Genetic Frontotemporal Dementia: A Meta-Analysis and Systematic Review. <span class="muted">Aging Dis</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/39500348/" rel="nofollow">PubMed 39500348</a></li><li>Ahmed 2026. Changes in body composition in genetic C9orf72 carriers: The role of the hypothalamus and thalamus. <span class="muted">Alzheimers Dement</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/42454523/" rel="nofollow">PubMed 42454523</a></li></ul>
 </main>
-<footer><div class="wrap">Synthèse écrite à partir des données extraites des articles scientifiques, sans rien y
-ajouter. Ce site ne donne pas de conseil médical : pour une question personnelle, voir une consultation de génétique.</div></footer>
+<footer class="site">
+  <div class="bar">
+    <p>Revue de littérature personnelle, non institutionnelle, assistée par IA : ce n'est pas un avis médical.
+    Les citations restent la propriété de leurs auteurs ; chaque référence renvoie à PubMed.</p>
+    <p>Pas de cookies, pas de mesure d'audience, aucun compte : ce site ne collecte aucune donnée personnelle.</p>
+    <nav aria-label="Pied de page"><a href="methode.html">Méthode (diagramme PRISMA)</a>
+      <a href="confidentialite.html">Confidentialité et mentions légales</a>
+      <a href="index.html">Toutes les synthèses</a></nav>
+  </div>
+</footer>
 </body>
 </html>

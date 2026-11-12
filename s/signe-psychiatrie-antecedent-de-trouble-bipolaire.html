@@ -41,6 +41,11 @@ nav.tabs .sep { width: 1px; background: var(--line); margin: 6px 4px; flex: none
   header.top .bar { flex-direction: column; align-items: stretch; gap: 2px; padding-top: 8px; }
   nav.tabs { margin: 0 -16px; padding: 0 12px 6px; }
 }
+footer.site { border-top: 1px solid var(--line); margin-top: 40px; padding: 18px 0 36px; font-size: .88rem;
+  color: var(--muted); line-height: 1.55; }
+footer.site .bar { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+footer.site p { margin: 0 0 8px; }
+footer.site nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MedicalWebPage", "name": "Antécédent de trouble bipolaire (Psychiatrie) chez les porteurs avant la maladie", "description": "Ce sujet repose uniquement sur des cas isolés : 6 porteurs décrits un par un dans 5 études, sans comparaison avec des non-porteurs. Chez plusieurs, un…", "inLanguage": "fr", "url": "https://thierryjmartin.github.io/c9orf72-profil/s/signe-psychiatrie-antecedent-de-trouble-bipolaire.html", "about": {"@type": "MedicalCondition", "name": "Expansion C9orf72 (SLA, démence frontotemporale)"}, "keywords": "bipolaire, manie, sautes d'humeur, exaltation"}</script>
 <style>
@@ -64,7 +69,20 @@ h2 { font-size: 1.15rem; margin: 32px 0 8px; }
 ul.refs { padding-left: 20px; } ul.refs li { margin: 6px 0; }
 ul.subjects { padding-left: 20px; columns: 2 280px; } ul.subjects li { margin: 3px 0; break-inside: avoid; }
 .tags span { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 1px 10px; margin: 2px 4px 2px 0; font-size: .88rem; }
-footer { border-top: 1px solid var(--line); padding: 16px 0 32px; font-size: .88rem; color: var(--muted); }
+.prisma { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 28px 18px; margin: 20px 0; }
+.prisma .stage { grid-column: 1 / -1; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--accent); font-weight: 700; margin: 6px 0 -20px; }
+.prisma .box { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px;
+  font-size: .93rem; }
+.prisma .box b { font-size: 1.15rem; }
+.prisma .main { grid-column: 1; position: relative; }
+.prisma .side { grid-column: 2; background: transparent; border-style: dashed; color: var(--muted); }
+.prisma .main + .main::before, .prisma .side + .main::before { content: "↓"; position: absolute; top: -25px; left: 50%;
+  color: var(--muted); line-height: 1; font-size: 1.1rem; }
+.prisma .final { border: 2px solid var(--accent); }
+.prisma ul { margin: 4px 0 0; padding-left: 18px; }
+@media (max-width: 600px) { .prisma { grid-template-columns: 1fr; row-gap: 10px; } .prisma .side { grid-column: 1; }
+  .prisma .main + .main, .prisma .side + .main { margin-top: 18px; } .prisma .stage { margin: 10px 0 0; } }
 </style>
 </head>
 <body>
@@ -92,7 +110,15 @@ les résultats détaillés, étude par étude, sur le site</a>.</p>
 <h2>Mots associés</h2><p class="tags"><span>bipolaire</span><span>manie</span><span>sautes d&#x27;humeur</span><span>exaltation</span></p>
 <h2>Références citées</h2><ul class="refs"><li>Gaynor 2024. C9orf72 Repeat Expansion Initially Presenting as Late-Onset Bipolar Disorder With Psychosis. <span class="muted">Neurologist</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/37839080/" rel="nofollow">PubMed 37839080</a></li><li>Block 2016. Frontotemporal Dementia and Psychiatric Illness: Emerging Clinical and Biological Links in Gene Carriers. <span class="muted">Am J Geriatr Psychiatry</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/26324540/" rel="nofollow">PubMed 26324540</a></li><li>Meisler 2013. C9ORF72 expansion in a family with bipolar disorder. <span class="muted">Bipolar Disord</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/23551834/" rel="nofollow">PubMed 23551834</a></li><li>Cantu 2025. Primary Polydipsia in a Case of Genetic Behavioral Variant Frontotemporal Dementia. <span class="muted">J Neuropsychiatry Clin Neurosci</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/39558707/" rel="nofollow">PubMed 39558707</a></li><li>Román 2026. Frontotemporal dementia: Clinical aspects, genetics, and neuropathology of a family with a C9ORF72 expansion in Argentina. <span class="muted">Brain Pathol</span> · <a href="https://pubmed.ncbi.nlm.nih.gov/41500252/" rel="nofollow">PubMed 41500252</a></li></ul>
 </main>
-<footer><div class="wrap">Synthèse écrite à partir des données extraites des articles scientifiques, sans rien y
-ajouter. Ce site ne donne pas de conseil médical : pour une question personnelle, voir une consultation de génétique.</div></footer>
+<footer class="site">
+  <div class="bar">
+    <p>Revue de littérature personnelle, non institutionnelle, assistée par IA : ce n'est pas un avis médical.
+    Les citations restent la propriété de leurs auteurs ; chaque référence renvoie à PubMed.</p>
+    <p>Pas de cookies, pas de mesure d'audience, aucun compte : ce site ne collecte aucune donnée personnelle.</p>
+    <nav aria-label="Pied de page"><a href="methode.html">Méthode (diagramme PRISMA)</a>
+      <a href="confidentialite.html">Confidentialité et mentions légales</a>
+      <a href="index.html">Toutes les synthèses</a></nav>
+  </div>
+</footer>
 </body>
 </html>

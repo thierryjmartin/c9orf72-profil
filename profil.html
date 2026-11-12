@@ -34,6 +34,11 @@ nav.tabs .sep { width: 1px; background: var(--line); margin: 6px 4px; flex: none
   header.top .bar { flex-direction: column; align-items: stretch; gap: 2px; padding-top: 8px; }
   nav.tabs { margin: 0 -16px; padding: 0 12px 6px; }
 }
+footer.site { border-top: 1px solid var(--line); margin-top: 40px; padding: 18px 0 36px; font-size: .88rem;
+  color: var(--muted); line-height: 1.55; }
+footer.site .bar { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+footer.site p { margin: 0 0 8px; }
+footer.site nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
 </style>
 <style>
 :root {
@@ -104,6 +109,16 @@ button.ghost { background: transparent; color: var(--accent); }
   <form id="form" class="card" novalidate></form>
   <div id="resultat"></div>
 </main>
+<footer class="site">
+  <div class="bar">
+    <p>Revue de littérature personnelle, non institutionnelle, assistée par IA : ce n'est pas un avis médical.
+    Les citations restent la propriété de leurs auteurs ; chaque référence renvoie à PubMed.</p>
+    <p>Pas de cookies, pas de mesure d'audience, aucun compte : ce site ne collecte aucune donnée personnelle.</p>
+    <nav aria-label="Pied de page"><a href="s/methode.html">Méthode (diagramme PRISMA)</a>
+      <a href="s/confidentialite.html">Confidentialité et mentions légales</a>
+      <a href="s/index.html">Toutes les synthèses</a></nav>
+  </div>
+</footer>
 <script>window.MODE_STATIQUE = true;</script>
 <script>
 const STATIQUE = window.MODE_STATIQUE === true;

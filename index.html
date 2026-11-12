@@ -41,6 +41,11 @@ nav.tabs .sep { width: 1px; background: var(--line); margin: 6px 4px; flex: none
   header.top .bar { flex-direction: column; align-items: stretch; gap: 2px; padding-top: 8px; }
   nav.tabs { margin: 0 -16px; padding: 0 12px 6px; }
 }
+footer.site { border-top: 1px solid var(--line); margin-top: 40px; padding: 18px 0 36px; font-size: .88rem;
+  color: var(--muted); line-height: 1.55; }
+footer.site .bar { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+footer.site p { margin: 0 0 8px; }
+footer.site nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
 </style>
 <style>
 :root {
@@ -160,7 +165,6 @@ input[type=search] { width: 100%; padding: 10px 14px; border: 1px solid var(--li
 #drawer .shade { position: absolute; inset: 0; background: rgba(0,0,0,.35); }
 #drawer .panel { position: absolute; right: 0; top: 0; bottom: 0; width: min(560px, 100%); background: var(--bg); border-left: 1px solid var(--line); overflow-y: auto; padding: 20px 20px 60px; }
 #drawer .close { float: right; border: 1px solid var(--line); background: var(--card); border-radius: 8px; padding: 4px 10px; cursor: pointer; }
-footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: .9rem; }
 .loading { padding: 60px 0; text-align: center; color: var(--muted); }
 @media (max-width: 640px) {
   .item > button.head { grid-template-columns: 1fr; }
@@ -412,11 +416,14 @@ footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--m
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    Données mises à jour le <span id="updated">…</span>. Revue de littérature personnelle, non institutionnelle,
-    assistée par IA ; ce n'est pas un avis médical. Les citations restent la propriété de leurs auteurs ; chaque
-    référence renvoie à PubMed. <a href="s/index.html">Toutes les synthèses</a>.
+<footer class="site">
+  <div class="bar">
+    <p>Données mises à jour le <span id="updated">…</span>. Revue de littérature personnelle, non institutionnelle, assistée par IA : ce n'est pas un avis médical.
+    Les citations restent la propriété de leurs auteurs ; chaque référence renvoie à PubMed.</p>
+    <p>Pas de cookies, pas de mesure d'audience, aucun compte : ce site ne collecte aucune donnée personnelle.</p>
+    <nav aria-label="Pied de page"><a href="s/methode.html">Méthode (diagramme PRISMA)</a>
+      <a href="s/confidentialite.html">Confidentialité et mentions légales</a>
+      <a href="s/index.html">Toutes les synthèses</a></nav>
   </div>
 </footer>
 
