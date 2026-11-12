@@ -23,3 +23,21 @@ familial ou de test génétique, consulter un service de génétique.
 Les données viennent d'une revue de littérature personnelle, réalisée en partie automatiquement (tri et extraction
 assistés par IA selon un protocole écrit, citations vérifiées mot pour mot, audits réguliers). Elle n'est pas
 validée par des pairs. Ce dépôt est mis à jour automatiquement à mesure qu'elle avance.
+
+## Données
+
+Le dossier [`donnees/`](donnees/) contient le jeu de données complet en CSV (UTF-8), une ligne par résultat extrait,
+chaque résultat avec son PMID et une citation exacte de l'article. Voir [`donnees/LISEZMOI.md`](donnees/LISEZMOI.md)
+pour la description des fichiers et des colonnes. La méthode et le diagramme de flux PRISMA, recalculé à chaque mise à
+jour, sont sur la page [Méthode](https://thierryjmartin.github.io/c9orf72-profil/s/methode.html).
+
+## Citer
+
+Chaque version de ce dépôt est archivée sur [Zenodo](https://zenodo.org), avec un identifiant DOI permanent. Le
+bouton « Cite this repository » de GitHub donne la référence ([`CITATION.cff`](CITATION.cff)).
+
+## Licence
+
+Données, synthèses et textes : [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.fr), réutilisation libre
+à condition de citer la source. Les citations d'articles (colonne `quote`) restent la propriété de leurs auteurs et
+sont reproduites au titre du droit de courte citation. Voir [`LICENSE`](LICENSE).

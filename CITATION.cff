@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Pour citer ce jeu de données, utilisez le DOI Zenodo de la version utilisée."
+title: "C9orf72 en clair : revue systématique vivante de la littérature sur l'expansion C9orf72 (pénétrance, signes avant la maladie, variabilité)"
+type: dataset
+authors:
+  - family-names: Martin
+    given-names: Thierry
+license: CC-BY-4.0
+url: "https://thierryjmartin.github.io/c9orf72-profil/"
+repository-code: "https://github.com/thierryjmartin/c9orf72-profil"
+keywords:
+  - C9orf72
+  - amyotrophic lateral sclerosis
+  - frontotemporal dementia
+  - penetrance
+  - presymptomatic carriers
+  - living systematic review
+  - LLM-assisted evidence synthesis
