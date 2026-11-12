@@ -15,7 +15,7 @@ objet. `confidence` : `high` (texte intégral, résultat principal), `medium` (r
 | `findings.csv` | 1137 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
 | `penetrance.csv` | 130 | Estimations de pénétrance (risque cumulé à un âge donné) ou descriptions de porteurs restés indemnes. |
 | `modifiers.csv` | 864 | Facteurs qui expliquent une variation entre porteurs (âge de début, forme SLA ou DFT, survie…). |
-| `frequencies.csv` | 1948 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
+| `frequencies.csv` | 1951 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
 
 ## Colonnes principales
 
