@@ -1,12 +1,29 @@
 {
   "upload_type": "dataset",
-  "title": "C9orf72 en clair : revue systématique vivante de la littérature sur l'expansion C9orf72 (pénétrance, signes avant la maladie, variabilité)",
-  "creators": [{"name": "Martin, Thierry"}],
-  "description": "<p>Données extraites d'une revue systématique vivante de la littérature PubMed sur l'expansion GGGGCC du gène <i>C9orf72</i> (sclérose latérale amyotrophique, démence frontotemporale), selon trois questions : pénétrance (qui tombe malade, à quel âge), signes observables chez les porteurs avant la maladie, et facteurs de variabilité du phénotype.</p><p>Chaque résultat extrait (effectifs, population, sens de l'effet, délai avant le début) est accompagné du PMID et d'une citation exacte de l'article. Le tri, l'extraction et les synthèses en langage courant sont réalisés par un modèle de langage (Claude, Anthropic) selon des protocoles écrits, avec vérification automatique des citations et audits réguliers ; il n'y a pas de double lecture humaine systématique. Ce jeu de données n'est pas validé par des pairs et ne constitue pas un avis médical.</p><p>Fichiers : <code>donnees/*.csv</code> (description dans <code>donnees/LISEZMOI.md</code>). Site public et diagramme PRISMA : https://thierryjmartin.github.io/c9orf72-profil/</p>",
+  "title": "Génétique en clair : revues systématiques vivantes de la littérature, gène par gène (pénétrance, signes avant la maladie, variabilité)",
+  "creators": [
+    {
+      "name": "Martin, Thierry"
+    }
+  ],
+  "description": "<p>Données extraites de revues systématiques vivantes de la littérature PubMed, une par gène de maladie génétique de l'adulte (au 12/11/2026 : l'expansion GGGGCC de <i>C9orf72</i>, sclérose latérale amyotrophique et démence frontotemporale), selon trois questions : pénétrance (qui tombe malade, à quel âge), signes observables chez les porteurs avant la maladie, et facteurs de variabilité du phénotype.</p><p>Chaque résultat extrait (effectifs, population, sens de l'effet, délai avant le début) est accompagné du PMID et d'une citation exacte de l'article. Le tri, l'extraction et les synthèses en langage courant sont réalisés par un modèle de langage (Claude, Anthropic) selon des protocoles écrits, avec vérification automatique des citations et audits réguliers ; il n'y a pas de double lecture humaine systématique. Ce jeu de données n'est pas validé par des pairs et ne constitue pas un avis médical.</p><p>Fichiers : <code>&lt;gène&gt;/donnees/*.csv</code> (description dans <code>&lt;gène&gt;/donnees/LISEZMOI.md</code>). Site public et diagrammes PRISMA : https://thierryjmartin.github.io/c9orf72-profil/</p>",
   "license": "cc-by-4.0",
   "language": "fra",
-  "keywords": ["C9orf72", "amyotrophic lateral sclerosis", "frontotemporal dementia", "penetrance", "presymptomatic carriers", "phenotypic variability", "living systematic review", "LLM-assisted evidence synthesis"],
+  "keywords": [
+    "C9orf72",
+    "amyotrophic lateral sclerosis",
+    "frontotemporal dementia",
+    "penetrance",
+    "presymptomatic carriers",
+    "phenotypic variability",
+    "living systematic review",
+    "LLM-assisted evidence synthesis"
+  ],
   "related_identifiers": [
-    {"identifier": "https://thierryjmartin.github.io/c9orf72-profil/", "relation": "isDocumentedBy", "resource_type": "other"}
+    {
+      "identifier": "https://thierryjmartin.github.io/c9orf72-profil/",
+      "relation": "isDocumentedBy",
+      "resource_type": "other"
+    }
   ]
 }
