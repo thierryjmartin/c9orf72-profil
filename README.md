@@ -19,6 +19,7 @@ simplement et vérifiable jusqu'à la phrase de chaque article :
 | Gène | Sous-site | Données |
 |---|---|---|
 | *C9orf72* (l'expansion C9orf72 ; SLA, démence frontotemporale) | [`c9orf72/`](https://thierryjmartin.github.io/c9orf72-profil/c9orf72/) | [`c9orf72/donnees/`](c9orf72/donnees/) |
+| *GRN* (les mutations du gène GRN ; démence frontotemporale) | [`grn/`](https://thierryjmartin.github.io/c9orf72-profil/grn/) | [`grn/donnees/`](grn/donnees/) |
 <!-- /GENES -->
 
 Le sous-site C9orf72 a aussi un **questionnaire** (`c9orf72/profil.html`) qui situe une personne au regard de la
