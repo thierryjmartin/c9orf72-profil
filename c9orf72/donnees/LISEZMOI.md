@@ -11,11 +11,11 @@ objet. `confidence` : `high` (texte intégral, résultat principal), `medium` (r
 
 | Fichier | Lignes | Contenu |
 |---|---|---|
-| `studies.csv` | 927 | Une ligne par article lu : plan d'étude, cohorte, pays, effectifs de porteurs (`n_presymptomatic` inclut les prodromiques), texte lu (`source_text` : `fulltext`, `abstract` ou `title`), résumé. Un `design` vide = article exclu à la lecture (raison dans `notes`). |
-| `findings.csv` | 1142 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
+| `studies.csv` | 930 | Une ligne par article lu : plan d'étude, cohorte, pays, effectifs de porteurs (`n_presymptomatic` inclut les prodromiques), texte lu (`source_text` : `fulltext`, `abstract` ou `title`), résumé. Un `design` vide = article exclu à la lecture (raison dans `notes`). |
+| `findings.csv` | 1148 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
 | `penetrance.csv` | 131 | Estimations de pénétrance (risque cumulé à un âge donné) ou descriptions de porteurs restés indemnes. |
 | `modifiers.csv` | 864 | Facteurs qui expliquent une variation entre porteurs (âge de début, forme SLA ou DFT, survie…). |
-| `frequencies.csv` | 1975 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
+| `frequencies.csv` | 1977 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
 
 ## Colonnes principales
 
