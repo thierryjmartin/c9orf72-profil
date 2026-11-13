@@ -11,11 +11,11 @@ objet. `confidence` : `high` (texte intégral, résultat principal), `medium` (r
 
 | Fichier | Lignes | Contenu |
 |---|---|---|
-| `studies.csv` | 12 | Une ligne par article lu : plan d'étude, cohorte, pays, effectifs de porteurs (`n_presymptomatic` inclut les prodromiques), texte lu (`source_text` : `fulltext`, `abstract` ou `title`), résumé. Un `design` vide = article exclu à la lecture (raison dans `notes`). |
-| `findings.csv` | 37 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
-| `penetrance.csv` | 3 | Estimations de pénétrance (risque cumulé à un âge donné) ou descriptions de porteurs restés indemnes. |
-| `modifiers.csv` | 11 | Facteurs qui expliquent une variation entre porteurs (âge de début, forme SLA ou DFT, survie…). |
-| `frequencies.csv` | 14 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
+| `studies.csv` | 18 | Une ligne par article lu : plan d'étude, cohorte, pays, effectifs de porteurs (`n_presymptomatic` inclut les prodromiques), texte lu (`source_text` : `fulltext`, `abstract` ou `title`), résumé. Un `design` vide = article exclu à la lecture (raison dans `notes`). |
+| `findings.csv` | 54 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
+| `penetrance.csv` | 4 | Estimations de pénétrance (risque cumulé à un âge donné) ou descriptions de porteurs restés indemnes. |
+| `modifiers.csv` | 12 | Facteurs qui expliquent une variation entre porteurs (âge de début, forme SLA ou DFT, survie…). |
+| `frequencies.csv` | 24 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
 
 ## Colonnes principales
 
