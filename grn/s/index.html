@@ -23,16 +23,31 @@ header.top .brand { display: inline-flex; align-items: center; gap: 8px; font-we
   text-decoration: none; color: var(--text); white-space: nowrap; }
 header.top .brand img { width: 26px; height: 26px; border-radius: 6px; }
 header.top .brand em { font-style: normal; color: var(--accent); }
-nav.tabs { display: flex; gap: 2px; min-width: 0; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+header.top .menu { display: flex; align-items: center; gap: 2px; min-width: 0; margin-left: auto; }
+nav.tabs { display: flex; gap: 2px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 nav.tabs::-webkit-scrollbar { display: none; }
 nav.tabs a { text-decoration: none; color: var(--muted); padding: 6px 9px; border-radius: 8px; white-space: nowrap;
   font-size: .9rem; line-height: 1.4; }
 nav.tabs a:hover { color: var(--text); background: var(--accent-soft); }
 nav.tabs a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); font-weight: 650; }
-nav.tabs .sep { width: 1px; background: var(--line); margin: 6px 4px; flex: none; }
+details.nav-more { position: relative; flex: none; }
+details.nav-more summary { list-style: none; cursor: pointer; color: var(--muted); padding: 6px 9px; border-radius: 8px;
+  font-size: .9rem; line-height: 1.4; white-space: nowrap; user-select: none; }
+details.nav-more summary::-webkit-details-marker { display: none; }
+details.nav-more summary::after { content: ""; display: inline-block; width: 5px; height: 5px; margin-left: 7px;
+  border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); vertical-align: 3px; }
+details.nav-more summary:hover, details.nav-more[open] summary { color: var(--text); background: var(--accent-soft); }
+details.nav-more.current summary { color: var(--accent); background: var(--accent-soft); font-weight: 650; }
+details.nav-more .panel { position: absolute; right: 0; top: calc(100% + 6px); z-index: 30; display: grid; min-width: 220px;
+  padding: 6px; background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .14); }
+details.nav-more .panel a { text-decoration: none; color: var(--text); padding: 8px 10px; border-radius: 6px; font-size: .92rem; }
+details.nav-more .panel a:hover { background: var(--accent-soft); }
+details.nav-more .panel a[aria-current="page"] { color: var(--accent); font-weight: 650; }
+details.nav-more .panel hr { border: 0; border-top: 1px solid var(--line); margin: 4px 0; }
 @media (max-width: 960px) {
   header.top .bar { flex-direction: column; align-items: stretch; gap: 2px; padding-top: 8px; }
-  nav.tabs { margin: 0 -16px; padding: 0 12px 6px; }
+  header.top .menu { margin: 0 -16px; padding: 0 12px 6px; }
 }
 footer.site { border-top: 1px solid var(--line); margin-top: 40px; padding: 18px 0 36px; font-size: .88rem;
   color: var(--muted); line-height: 1.55; }
@@ -83,19 +98,31 @@ ul.subjects { padding-left: 20px; columns: 2 280px; } ul.subjects li { margin: 3
 <header class="top">
   <div class="bar">
     <a class="brand" href="../index.html"><img src="../../img/grn.svg" alt=""><span>GRN <em>en clair</em></span></a>
-    <nav class="tabs" aria-label="Sections">
+    <div class="menu">
+      <nav class="tabs" aria-label="Sections">
       <a href="../index.html#incertain">Pas testé ?</a>
       <a href="../index.html#penetrance">Qui tombe malade ?</a>
       <a href="../index.html#signes">Signes avant</a>
       <a href="../index.html#variabilite">Maladies différentes</a>
-      <a href="../index.html#explorer">Explorer</a>
-      <span class="sep" aria-hidden="true"></span>
-      <a href="index.html" aria-current="page">Synthèses</a>
       <a href="traitements.html">Traitements</a>
-      <a href="../../index.html">Autres gènes</a>
-    </nav>
+      </nav>
+      <details class="nav-more current">
+        <summary>Plus</summary>
+        <nav class="panel" aria-label="Autres pages">
+        <a href="../index.html#explorer">Explorer les données</a>
+        <a href="index.html" aria-current="page">Toutes les synthèses</a>
+        <hr>
+        <a href="../../index.html">Autres gènes</a>
+        </nav>
+      </details>
+    </div>
   </div>
-</header><div class="review-banner">Revue en cours : 335 articles restent à trier ou à lire. Les chiffres et les synthèses de ce site vont encore évoluer.</div>
+</header>
+<script>
+addEventListener("click", e => document.querySelectorAll("details.nav-more[open]").forEach(d => {
+  if (!d.contains(e.target) || e.target.closest("a")) d.open = false; }));
+addEventListener("keydown", e => { if (e.key === "Escape") document.querySelectorAll("details.nav-more[open]").forEach(d => d.open = false); });
+</script><div class="review-banner">Revue en cours : 327 articles restent à trier ou à lire. Les chiffres et les synthèses de ce site vont encore évoluer.</div>
 <main class="wrap">
 <h1>Toutes les synthèses</h1><p>Ce que disent les études sur les mutations du gène GRN (démence frontotemporale), sujet par sujet, en langage courant : 31 synthèses.</p><h2>Questions fréquentes</h2><ul class="subjects"><li><a href="question-symptomes.html">Mes « petits symptômes » veulent-ils dire quelque chose ?</a></li><li><a href="question-sans-signes.html">Un porteur qui ne le sait pas a-t-il forcément des signes ?</a></li></ul><h2>Signes avant la maladie, par domaine</h2><ul class="subjects"><li><a href="domaine-biomarqueurs-fluides.html">Biomarqueurs (LCR, sang) : ce qui change chez les porteurs avant la maladie</a></li><li><a href="domaine-cognition.html">Cognition : ce qui change chez les porteurs avant la maladie</a></li><li><a href="domaine-comportement-personnalite.html">Comportement et personnalité : ce qui change chez les porteurs avant la maladie</a></li><li><a href="domaine-imagerie-fonctionnelle-eeg.html">Imagerie fonctionnelle et EEG : ce qui change chez les porteurs avant la maladie</a></li><li><a href="domaine-imagerie-structurelle.html">Imagerie structurelle : ce qui change chez les porteurs avant la maladie</a></li><li><a href="domaine-psychiatrie.html">Psychiatrie : ce qui change chez les porteurs avant la maladie</a></li></ul><h2>Signes avant la maladie, un par un</h2><ul class="subjects"><li><a href="signe-imagerie-structurelle-amincissement-cortical.html">Amincissement cortical (Imagerie structurelle) chez les porteurs avant la maladie</a></li><li><a href="signe-imagerie-structurelle-atrophie-corticale-globale-volume.html">Atrophie corticale globale (volume) (Imagerie structurelle) chez les porteurs avant la maladie</a></li><li><a href="signe-imagerie-structurelle-atrophie-de-la-substance-grise-corticale-et-sous-corticale.html">Atrophie de la substance grise corticale et sous-corticale (Imagerie structurelle) chez les porteurs avant la maladie</a></li><li><a href="signe-biomarqueurs-fluides-gfap-plasmatique-eleve.html">GFAP plasmatique élevé (Biomarqueurs (LCR, sang)) chez les porteurs avant la maladie</a></li><li><a href="signe-biomarqueurs-fluides-glucosylsphingosine-plasmatique-elevee.html">Glucosylsphingosine plasmatique élevée (Biomarqueurs (LCR, sang)) chez les porteurs avant la maladie</a></li><li><a href="signe-cognition-memoire-episodique-diminuee.html">Mémoire épisodique diminuée (Cognition) chez les porteurs avant la maladie</a></li><li><a href="signe-biomarqueurs-fluides-nfl-lcr-eleve.html">NfL LCR élevé (Biomarqueurs (LCR, sang)) chez les porteurs avant la maladie</a></li><li><a href="signe-biomarqueurs-fluides-nfl-plasmatique-en-augmentation.html">NfL plasmatique en augmentation (Biomarqueurs (LCR, sang)) chez les porteurs avant la maladie</a></li><li><a href="signe-biomarqueurs-fluides-nfl-plasmatique-eleve.html">NfL plasmatique élevé (Biomarqueurs (LCR, sang)) chez les porteurs avant la maladie</a></li><li><a href="signe-cognition-vitesse-de-traitement-diminuee.html">Vitesse de traitement diminuée (Cognition) chez les porteurs avant la maladie</a></li><li><a href="signe-biomarqueurs-fluides-ykl40-plasmatique-eleve.html">YKL40 plasmatique élevé (Biomarqueurs (LCR, sang)) chez les porteurs avant la maladie</a></li></ul><h2>Pourquoi des maladies différentes</h2><ul class="subjects"><li><a href="issue-other.html">Autre : quels facteurs l&#x27;expliquent chez les porteurs</a></li><li><a href="issue-cognitive-behavioural-profile.html">Profil cognitif et comportemental : quels facteurs l&#x27;expliquent chez les porteurs</a></li><li><a href="issue-imaging-pattern.html">Profil d&#x27;imagerie : quels facteurs l&#x27;expliquent chez les porteurs</a></li><li><a href="issue-penetrance.html">Pénétrance (malade ou non) : quels facteurs l&#x27;expliquent chez les porteurs</a></li><li><a href="issue-survival-progression.html">Survie et progression : quels facteurs l&#x27;expliquent chez les porteurs</a></li><li><a href="issue-age-at-onset.html">Âge de début : quels facteurs l&#x27;expliquent chez les porteurs</a></li></ul><h2>Facteurs étudiés, un par un</h2><ul class="subjects"><li><a href="facteur-other-tmem106b-rs1990622-allele-protecteur.html">TMEM106B rs1990622 (allèle protecteur) et autre chez les porteurs</a></li><li><a href="facteur-cognitive-behavioural-profile-tmem106b-rs1990622-allele-protecteur.html">TMEM106B rs1990622 (allèle protecteur) et profil cognitif et comportemental chez les porteurs</a></li><li><a href="facteur-imaging-pattern-tmem106b-rs1990622-allele-protecteur.html">TMEM106B rs1990622 (allèle protecteur) et profil d&#x27;imagerie chez les porteurs</a></li><li><a href="facteur-penetrance-tmem106b-rs1990622-allele-protecteur.html">TMEM106B rs1990622 (allèle protecteur) et pénétrance (malade ou non) chez les porteurs</a></li><li><a href="facteur-survival-progression-tmem106b-rs1990622-allele-protecteur.html">TMEM106B rs1990622 (allèle protecteur) et survie et progression chez les porteurs</a></li><li><a href="facteur-other-type-de-variant-grn.html">Type de variant GRN et autre chez les porteurs</a></li></ul>
 </main>

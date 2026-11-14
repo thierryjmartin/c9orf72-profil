@@ -56,16 +56,31 @@ header.top .brand { display: inline-flex; align-items: center; gap: 8px; font-we
   text-decoration: none; color: var(--text); white-space: nowrap; }
 header.top .brand img { width: 26px; height: 26px; border-radius: 6px; }
 header.top .brand em { font-style: normal; color: var(--accent); }
-nav.tabs { display: flex; gap: 2px; min-width: 0; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+header.top .menu { display: flex; align-items: center; gap: 2px; min-width: 0; margin-left: auto; }
+nav.tabs { display: flex; gap: 2px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 nav.tabs::-webkit-scrollbar { display: none; }
 nav.tabs a { text-decoration: none; color: var(--muted); padding: 6px 9px; border-radius: 8px; white-space: nowrap;
   font-size: .9rem; line-height: 1.4; }
 nav.tabs a:hover { color: var(--text); background: var(--accent-soft); }
 nav.tabs a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); font-weight: 650; }
-nav.tabs .sep { width: 1px; background: var(--line); margin: 6px 4px; flex: none; }
+details.nav-more { position: relative; flex: none; }
+details.nav-more summary { list-style: none; cursor: pointer; color: var(--muted); padding: 6px 9px; border-radius: 8px;
+  font-size: .9rem; line-height: 1.4; white-space: nowrap; user-select: none; }
+details.nav-more summary::-webkit-details-marker { display: none; }
+details.nav-more summary::after { content: ""; display: inline-block; width: 5px; height: 5px; margin-left: 7px;
+  border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); vertical-align: 3px; }
+details.nav-more summary:hover, details.nav-more[open] summary { color: var(--text); background: var(--accent-soft); }
+details.nav-more.current summary { color: var(--accent); background: var(--accent-soft); font-weight: 650; }
+details.nav-more .panel { position: absolute; right: 0; top: calc(100% + 6px); z-index: 30; display: grid; min-width: 220px;
+  padding: 6px; background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .14); }
+details.nav-more .panel a { text-decoration: none; color: var(--text); padding: 8px 10px; border-radius: 6px; font-size: .92rem; }
+details.nav-more .panel a:hover { background: var(--accent-soft); }
+details.nav-more .panel a[aria-current="page"] { color: var(--accent); font-weight: 650; }
+details.nav-more .panel hr { border: 0; border-top: 1px solid var(--line); margin: 4px 0; }
 @media (max-width: 960px) {
   header.top .bar { flex-direction: column; align-items: stretch; gap: 2px; padding-top: 8px; }
-  nav.tabs { margin: 0 -16px; padding: 0 12px 6px; }
+  header.top .menu { margin: 0 -16px; padding: 0 12px 6px; }
 }
 footer.site { border-top: 1px solid var(--line); margin-top: 40px; padding: 18px 0 36px; font-size: .88rem;
   color: var(--muted); line-height: 1.55; }
@@ -100,7 +115,7 @@ lecture systématique des études publiées ; chaque chiffre renvoie à l'articl
 <a class="gene" href="grn/">
   <span class="name"><i>GRN</i> <span class="badge">Revue en cours</span></span>
   <span class="what">Les mutations du gène GRN (démence frontotemporale)</span>
-  <span class="muted small">84 études lues · 565 résultats extraits · mis à jour le 14/11/2026</span>
+  <span class="muted small">89 études lues · 596 résultats extraits · mis à jour le 14/11/2026</span>
 </a>
 </div>
 <p class="notice">Ces sites ne donnent pas d'avis médical. Les études décrivent des groupes, pas des personnes : pour

@@ -23,16 +23,31 @@ header.top .brand { display: inline-flex; align-items: center; gap: 8px; font-we
   text-decoration: none; color: var(--text); white-space: nowrap; }
 header.top .brand img { width: 26px; height: 26px; border-radius: 6px; }
 header.top .brand em { font-style: normal; color: var(--accent); }
-nav.tabs { display: flex; gap: 2px; min-width: 0; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+header.top .menu { display: flex; align-items: center; gap: 2px; min-width: 0; margin-left: auto; }
+nav.tabs { display: flex; gap: 2px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 nav.tabs::-webkit-scrollbar { display: none; }
 nav.tabs a { text-decoration: none; color: var(--muted); padding: 6px 9px; border-radius: 8px; white-space: nowrap;
   font-size: .9rem; line-height: 1.4; }
 nav.tabs a:hover { color: var(--text); background: var(--accent-soft); }
 nav.tabs a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); font-weight: 650; }
-nav.tabs .sep { width: 1px; background: var(--line); margin: 6px 4px; flex: none; }
+details.nav-more { position: relative; flex: none; }
+details.nav-more summary { list-style: none; cursor: pointer; color: var(--muted); padding: 6px 9px; border-radius: 8px;
+  font-size: .9rem; line-height: 1.4; white-space: nowrap; user-select: none; }
+details.nav-more summary::-webkit-details-marker { display: none; }
+details.nav-more summary::after { content: ""; display: inline-block; width: 5px; height: 5px; margin-left: 7px;
+  border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); vertical-align: 3px; }
+details.nav-more summary:hover, details.nav-more[open] summary { color: var(--text); background: var(--accent-soft); }
+details.nav-more.current summary { color: var(--accent); background: var(--accent-soft); font-weight: 650; }
+details.nav-more .panel { position: absolute; right: 0; top: calc(100% + 6px); z-index: 30; display: grid; min-width: 220px;
+  padding: 6px; background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .14); }
+details.nav-more .panel a { text-decoration: none; color: var(--text); padding: 8px 10px; border-radius: 6px; font-size: .92rem; }
+details.nav-more .panel a:hover { background: var(--accent-soft); }
+details.nav-more .panel a[aria-current="page"] { color: var(--accent); font-weight: 650; }
+details.nav-more .panel hr { border: 0; border-top: 1px solid var(--line); margin: 4px 0; }
 @media (max-width: 960px) {
   header.top .bar { flex-direction: column; align-items: stretch; gap: 2px; padding-top: 8px; }
-  nav.tabs { margin: 0 -16px; padding: 0 12px 6px; }
+  header.top .menu { margin: 0 -16px; padding: 0 12px 6px; }
 }
 footer.site { border-top: 1px solid var(--line); margin-top: 40px; padding: 18px 0 36px; font-size: .88rem;
   color: var(--muted); line-height: 1.55; }
@@ -83,19 +98,31 @@ ul.subjects { padding-left: 20px; columns: 2 280px; } ul.subjects li { margin: 3
 <header class="top">
   <div class="bar">
     <a class="brand" href="../index.html"><img src="../../img/grn.svg" alt=""><span>GRN <em>en clair</em></span></a>
-    <nav class="tabs" aria-label="Sections">
+    <div class="menu">
+      <nav class="tabs" aria-label="Sections">
       <a href="../index.html#incertain">Pas testé ?</a>
       <a href="../index.html#penetrance">Qui tombe malade ?</a>
       <a href="../index.html#signes">Signes avant</a>
       <a href="../index.html#variabilite">Maladies différentes</a>
-      <a href="../index.html#explorer">Explorer</a>
-      <span class="sep" aria-hidden="true"></span>
-      <a href="index.html">Synthèses</a>
       <a href="traitements.html">Traitements</a>
-      <a href="../../index.html">Autres gènes</a>
-    </nav>
+      </nav>
+      <details class="nav-more">
+        <summary>Plus</summary>
+        <nav class="panel" aria-label="Autres pages">
+        <a href="../index.html#explorer">Explorer les données</a>
+        <a href="index.html">Toutes les synthèses</a>
+        <hr>
+        <a href="../../index.html">Autres gènes</a>
+        </nav>
+      </details>
+    </div>
   </div>
-</header><div class="review-banner">Revue en cours : 335 articles restent à trier ou à lire. Les chiffres et les synthèses de ce site vont encore évoluer.</div>
+</header>
+<script>
+addEventListener("click", e => document.querySelectorAll("details.nav-more[open]").forEach(d => {
+  if (!d.contains(e.target) || e.target.closest("a")) d.open = false; }));
+addEventListener("keydown", e => { if (e.key === "Escape") document.querySelectorAll("details.nav-more[open]").forEach(d => d.open = false); });
+</script><div class="review-banner">Revue en cours : 327 articles restent à trier ou à lire. Les chiffres et les synthèses de ce site vont encore évoluer.</div>
 <main class="wrap">
 <h1>Méthode</h1>
 <p>Ce site repose sur une revue systématique de la littérature scientifique, tenue à jour en continu. Les articles
@@ -111,19 +138,19 @@ IA (Claude, d'Anthropic) selon des protocoles écrits, et vérifiés par des aud
   <div class="box main">Articles trouvés dans PubMed : <b>1 643</b> par la recherche,
     <b>0</b> par les références et citations des articles retenus</div>
   <div class="box side">Retirés avant le tri :<ul><li>19 doublons</li><li>45 écartés par un filtre
-    automatique (ni GRN, ni cohorte génétique)</li><li>8 en attente de tri</li></ul></div>
+    automatique (ni GRN, ni cohorte génétique)</li></ul></div>
   <div class="stage">Tri</div>
-  <div class="box main">Articles triés sur le titre et le résumé : <b>1 571</b></div>
-  <div class="box side">Exclus au tri : 1 160</div>
-  <div class="box main">Articles retenus pour la lecture : <b>411</b></div>
-  <div class="box side">Exclus à la lecture (hors sujet) : 0<ul><li>327 en attente d'extraction</li></ul></div>
+  <div class="box main">Articles triés sur le titre et le résumé : <b>1 579</b></div>
+  <div class="box side">Exclus au tri : 1 162</div>
+  <div class="box main">Articles retenus pour la lecture : <b>417</b></div>
+  <div class="box side">Exclus à la lecture (hors sujet) : 1<ul><li>327 en attente d'extraction</li></ul></div>
   <div class="stage">Inclusion</div>
-  <div class="box main final">Études incluses : <b>84</b>
-    <ul><li>lues en texte intégral : 84</li><li>sur le résumé seul : 0</li>
+  <div class="box main final">Études incluses : <b>89</b>
+    <ul><li>lues en texte intégral : 89</li><li>sur le résumé seul : 0</li>
     <li>sur le titre seul : 0</li></ul></div>
   <div class="box side">Par question (une étude peut en couvrir plusieurs) :<ul>
-    <li>signes avant la maladie : 57</li><li>qui tombe malade : 7</li>
-    <li>maladies différentes : 42</li></ul>565 résultats extraits au total.</div>
+    <li>signes avant la maladie : 59</li><li>qui tombe malade : 7</li>
+    <li>maladies différentes : 42</li></ul>596 résultats extraits au total.</div>
 </div>
 
 <h2>Limites</h2>
