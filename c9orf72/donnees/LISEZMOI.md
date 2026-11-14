@@ -11,12 +11,12 @@ objet. `confidence` : `high` (texte intégral, résultat principal), `medium` (r
 
 | Fichier | Lignes | Contenu |
 |---|---|---|
-| `studies.csv` | 930 | Une ligne par article lu : plan d'étude, cohorte, pays, effectifs de porteurs (`n_presymptomatic` inclut les prodromiques), texte lu (`source_text` : `fulltext`, `abstract` ou `title`), résumé. Un `design` vide = article exclu à la lecture (raison dans `notes`). |
-| `findings.csv` | 1148 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
+| `studies.csv` | 936 | Une ligne par article lu : plan d'étude, cohorte, pays, effectifs de porteurs (`n_presymptomatic` inclut les prodromiques), texte lu (`source_text` : `fulltext`, `abstract` ou `title`), résumé. Un `design` vide = article exclu à la lecture (raison dans `notes`). |
+| `findings.csv` | 1149 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
 | `penetrance.csv` | 131 | Estimations de pénétrance (risque cumulé à un âge donné) ou descriptions de porteurs restés indemnes. |
 | `modifiers.csv` | 864 | Facteurs qui expliquent une variation entre porteurs (âge de début, forme SLA ou DFT, survie…). |
 | `frequencies.csv` | 1977 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
-| `treatments.csv` | 0 | Traitements étudiés chez l'humain : un traitement × une population × un critère, avec sa visée et son résultat. |
+| `treatments.csv` | 7 | Traitements étudiés chez l'humain : un traitement × une population × un critère, avec sa visée et son résultat. |
 | `trials.csv` | 15 | Essais enregistrés sur ClinicalTrials.gov qui mentionnent C9orf72 (sélection automatique, sans lecture) : statut, phase, visée, traitements, promoteur. |
 
 ## Colonnes principales
