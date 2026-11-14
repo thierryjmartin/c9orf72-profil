@@ -11,11 +11,13 @@ objet. `confidence` : `high` (texte intégral, résultat principal), `medium` (r
 
 | Fichier | Lignes | Contenu |
 |---|---|---|
-| `studies.csv` | 78 | Une ligne par article lu : plan d'étude, cohorte, pays, effectifs de porteurs (`n_presymptomatic` inclut les prodromiques), texte lu (`source_text` : `fulltext`, `abstract` ou `title`), résumé. Un `design` vide = article exclu à la lecture (raison dans `notes`). |
-| `findings.csv` | 241 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
+| `studies.csv` | 84 | Une ligne par article lu : plan d'étude, cohorte, pays, effectifs de porteurs (`n_presymptomatic` inclut les prodromiques), texte lu (`source_text` : `fulltext`, `abstract` ou `title`), résumé. Un `design` vide = article exclu à la lecture (raison dans `notes`). |
+| `findings.csv` | 266 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
 | `penetrance.csv` | 8 | Estimations de pénétrance (risque cumulé à un âge donné) ou descriptions de porteurs restés indemnes. |
-| `modifiers.csv` | 69 | Facteurs qui expliquent une variation entre porteurs (âge de début, forme SLA ou DFT, survie…). |
-| `frequencies.csv` | 159 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
+| `modifiers.csv` | 70 | Facteurs qui expliquent une variation entre porteurs (âge de début, forme SLA ou DFT, survie…). |
+| `frequencies.csv` | 174 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
+| `treatments.csv` | 0 | Traitements étudiés chez l'humain : un traitement × une population × un critère, avec sa visée et son résultat. |
+| `trials.csv` | 11 | Essais enregistrés sur ClinicalTrials.gov qui mentionnent GRN (sélection automatique, sans lecture) : statut, phase, visée, traitements, promoteur. |
 
 ## Colonnes principales
 
@@ -27,10 +29,14 @@ objet. `confidence` : `high` (texte intégral, résultat principal), `medium` (r
 - `modifiers.csv` : `modifier_type` (`methylation`, `genetic_modifier`, `polygenic_score`, `haplotype_ancestry`, `sex`, `age`, `parental_transmission`, `environment_lifestyle`, `comorbidity`, `molecular_pathology`, `other`) ; `outcome` (`penetrance`, `age_at_onset`, `phenotype_als_vs_ftd`, `psychiatric_presentation`, `cognitive_behavioural_profile`, `survival_progression`, `neuropathology`, `imaging_pattern`, `other`) ; `association`
   (`associated`, `no_association`, `mixed`). Une `population` égale à `mixed` ou qui commence par « poolé » signale un calcul hors des
   seuls porteurs GRN (tous gènes confondus).
+- `treatments.csv` : `aim` (`prevention`, `disease_modifying`, `symptomatic`) ; `intervention_type` (`antisense`, `gene_therapy`, `antibody`, `small_molecule`, `cell_therapy`, `non_drug`, `other`) ; `result`
+  (`benefit`, `no_benefit`, `harm`, `mixed`, `safety_only`, `target_engagement`) ; `trial_id` (numéro ClinicalTrials.gov, s'il est donné).
+- `trials.csv` : `status` (statut du registre) ; `aim` (`prevention` si l'essai vise des porteurs sans symptôme) ;
+  `first_seen` et `status_changed` (dates vues par la revue, pas par le registre).
 - `frequencies.csv` : `kind` (`carrier_frequency`, `phenotype_frequency`, `carrier_vs_noncarrier`, `carrier_vs_other_gene`, `cohort_composition`) ; `grp` (groupe dénominateur) ; `feature` (ce qui est compté) ; `n`,
   `total`, `percent` ; `comparison`.
 
-Les articles sont rattachés à une ou plusieurs des questions de la revue (`signes_precoces`, `penetrance`, `variabilite`).
+Les articles sont rattachés à une ou plusieurs des questions de la revue (`signes_precoces`, `penetrance`, `variabilite`, `traitements`).
 
 ## Limites
 
