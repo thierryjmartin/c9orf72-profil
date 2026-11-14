@@ -118,6 +118,7 @@ def generate(con):
     paths = [out_md, exports / "findings.csv", exports / "studies.csv"]
     paths += _penetrance(con, exports)
     paths += _variability(con, exports)
+    paths += _treatments(con, exports)
     return [p.relative_to(ROOT) for p in paths]
 
 
@@ -254,3 +255,46 @@ def _variability(con, exports):
     out = GENE_DIR / "syntheses" / "tableau-variabilite.md"
     out.write_text("\n".join(L) + "\n")
     return [out, exports / "modifiers.csv", exports / "frequencies.csv"]
+
+
+AIM_LABELS = {"prevention": "Prévention (avant les symptômes)", "disease_modifying": "Chez les malades : agir sur la maladie",
+              "symptomatic": "Chez les malades : soulager un symptôme"}
+RESULT_LABELS = {"benefit": "effet favorable", "no_benefit": "pas d'effet", "harm": "défavorable ou toxique",
+                 "mixed": "résultats mixtes", "safety_only": "tolérance seule", "target_engagement": "agit sur sa cible"}
+
+
+def _treatments(con, exports):
+    from .essais import STATUS_LABELS
+    rows = con.execute("SELECT t.*, a.first_author, a.year FROM treatments t JOIN articles a USING (pmid) "
+                       "ORDER BY t.aim, t.intervention, a.year").fetchall()
+    _csv(exports / "treatments.csv", rows)
+    trials = con.execute("SELECT * FROM trials ORDER BY aim DESC, status, nct").fetchall()
+    _csv(exports / "trials.csv", trials)
+    L = [f"# Traitements étudiés chez les porteurs de {MUTATION}", "",
+         "*Fichier généré par `python -m biblio report` : ne pas éditer à la main.*", "",
+         "Études publiées chez l'humain (essais, cohortes traitées, cas), puis essais enregistrés sur ClinicalTrials.gov.", ""]
+    if not rows:
+        L.append("*Aucun traitement extrait pour l'instant.*")
+    for aim, label in AIM_LABELS.items():
+        arows = [r for r in rows if r["aim"] == aim]
+        if not arows:
+            continue
+        L += [f"## {label}", "", "| Traitement | Type | Phase | Résultat | Effet | Porteurs | Référence |",
+              "|---|---|---|---|---|---|---|"]
+        for r in arows:
+            L.append(f"| {r['intervention'] or ''} | {r['intervention_type'] or ''} | {r['phase'] or ''} | "
+                     f"{RESULT_LABELS.get(r['result'], r['result'] or '')} | {r['effect'] or ''} | {r['n_carriers'] or ''} | "
+                     f"{_ref(r)} |")
+        L.append("")
+    L += ["## Essais enregistrés (ClinicalTrials.gov)", ""]
+    if trials:
+        L += ["| Essai | Visée | Phase | Statut | Traitement | Promoteur |", "|---|---|---|---|---|---|"]
+        for r in trials:
+            L.append(f"| [{r['nct']}](https://clinicaltrials.gov/study/{r['nct']}) {r['title'] or ''} | "
+                     f"{'prévention' if r['aim'] == 'prevention' else 'malades'} | {r['phase'] or ''} | "
+                     f"{STATUS_LABELS.get(r['status'], r['status'] or '')} | {r['interventions'] or ''} | {r['sponsor'] or ''} |")
+    else:
+        L.append("*Aucun essai enregistré trouvé (`python3 -m biblio essais`).*")
+    out = GENE_DIR / "syntheses" / "tableau-traitements.md"
+    out.write_text("\n".join(L) + "\n")
+    return [out, exports / "treatments.csv", exports / "trials.csv"]

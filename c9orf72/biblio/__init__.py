@@ -44,6 +44,7 @@ AXES = [
     "signes_precoces",   # signes avant le diagnostic
     "penetrance",        # qui tombe malade, à quel âge
     "variabilite",       # pourquoi le phénotype diffère d'un porteur à l'autre
+    "traitements",       # traitements essayés chez l'humain : préventifs (avant les symptômes) ou chez les malades
 ]
 
 # Axe variabilité/pénétrance : facteur étudié et phénotype expliqué. Les types propres à un gène (taille de
@@ -111,3 +112,27 @@ POPULATIONS = [
 ]
 
 DIRECTIONS = ["abnormal", "no_difference", "mixed"]
+
+# Axe traitements (liste `treatments` de l'extraction, table treatments)
+TREATMENT_AIMS = [
+    "prevention",          # avant les symptômes : retarder ou éviter la maladie chez des porteurs sains
+    "disease_modifying",   # chez les malades : ralentir ou arrêter la maladie (traitement « curatif »)
+    "symptomatic",         # soulager un symptôme sans agir sur la maladie elle-même
+]
+TREATMENT_TYPES = [
+    "antisense",           # oligonucléotide antisens, ARN interférent
+    "gene_therapy",        # vecteur viral (AAV…), édition du génome
+    "antibody",            # anticorps monoclonal
+    "small_molecule",      # médicament classique (comprimé, perfusion)
+    "cell_therapy",
+    "non_drug",            # rééducation, nutrition, ventilation, stimulation, accompagnement
+    "other",
+]
+TREATMENT_RESULTS = [
+    "benefit",             # effet favorable sur un critère clinique ou un biomarqueur de la maladie
+    "no_benefit",          # pas d'effet (ou essai arrêté pour inefficacité)
+    "harm",                # effet défavorable ou toxicité qui fait arrêter
+    "mixed",
+    "safety_only",         # phase précoce : tolérance seule, pas d'évaluation de l'efficacité
+    "target_engagement",   # le traitement agit sur sa cible (biomarqueur), effet clinique non montré
+]

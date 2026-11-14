@@ -1,5 +1,5 @@
 {
-"stats":{"screened":10100,"read":5543,"studies":880,"fulltext":527,"findings":1148,"penetrance":131,"modifiers":864,"frequencies":1990,"early_findings":776,"updated":"2026-11-13","pending":0},
+"stats":{"screened":10104,"read":5543,"studies":880,"fulltext":527,"findings":1148,"penetrance":131,"modifiers":864,"frequencies":1990,"early_findings":776,"updated":"2026-11-14","pending":35},
 "curves":[
 {"id":"malades","label":"porteurs repérés à partir de malades (patients et leurs familles)","points":[[35,0.0,"22406228"],[45,10.0,"22406228"],[50,19.4,"26022924"],[57,50.6,"26022924"],[72,96.1,"26022924"]]},
 {"id":"population","label":"porteurs trouvés en population générale (UK Biobank)","points":[[35,0.0,"22406228"],[65,7.7,"40682810"],[70,19.0,"40682810"],[75,39.0,"40682810"],[80,66.0,"40682810"]]}
