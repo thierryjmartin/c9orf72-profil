@@ -210,7 +210,7 @@ input[type=search] { width: 100%; padding: 10px 14px; border: 1px solid var(--li
 addEventListener("click", e => document.querySelectorAll("details.nav-more[open]").forEach(d => {
   if (!d.contains(e.target) || e.target.closest("a")) d.open = false; }));
 addEventListener("keydown", e => { if (e.key === "Escape") document.querySelectorAll("details.nav-more[open]").forEach(d => d.open = false); });
-</script><div class="review-banner">Revue en cours : 898 articles restent à trier ou à lire. Les chiffres et les synthèses de ce site vont encore évoluer.</div>
+</script><div class="review-banner">Revue en cours : 789 articles restent à trier ou à lire. Les chiffres et les synthèses de ce site vont encore évoluer.</div>
 
 <main class="wrap">
   <div id="loading" class="loading">Chargement des données…</div>
@@ -338,7 +338,7 @@ addEventListener("keydown", e => { if (e.key === "Escape") document.querySelecto
     </div>
 
     <h2>4. Est-ce que je ressemblerai à mon parent malade ?</h2>
-    <p>Même maladie (SLA ou DFT) ? Même âge de début ? Plus tôt d'une génération à l'autre (« anticipation ») ? Voici
+    <p>Même forme de la maladie (comportement, langage, mouvements) ? Même âge de début ? Plus tôt d'une génération à l'autre (« anticipation ») ? Voici
       les résultats des études sur la transmission et les ressemblances familiales.</p>
     <div id="par-synth"></div>
     <div id="par-summary"></div>
@@ -360,7 +360,6 @@ addEventListener("keydown", e => { if (e.key === "Escape") document.querySelecto
     <div class="card">
       <div class="controls">
         <div class="seg" id="pen-outcome" role="group" aria-label="Maladie">
-          <button data-v="any" aria-pressed="true">SLA ou DFT</button><button data-v="als" aria-pressed="false">SLA</button><button data-v="ftd" aria-pressed="false">DFT</button>
         </div>
       </div>
       <div class="legend" id="pen-legend"></div>
@@ -485,8 +484,10 @@ const pubmed = pmid => `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`;
 const lab = (k, v) => (D.labels[k] || {})[v] || v || "";
 const conf = c => c ? `<span class="tag">confiance ${esc(lab("confidence", c))}</span>` : "";
 const group = asc => asc === "population" ? "population" : "malades";
-// estimations utilisées pour les phrases de synthèse : SLA ou DFT, 70 ans et plus, confiance moyenne ou élevée
-const late = g => D.penetrance.filter(p => p.outcome === "any" && p.age >= 70 && p.cumulative_risk != null && p.confidence !== "low" && group(p.ascertainment) === g);
+// maladies de la pénétrance propres au gène (fiche gene.toml, [site] issues_penetrance) : libellés et issues résumées
+const PEN = {"labels": {"ftd": "DFT", "any": "DFT ou autre démence"}, "synthese": ["any", "ftd"]};
+// estimations utilisées pour les phrases de synthèse : issues PEN.synthese, 70 ans et plus, confiance moyenne ou élevée
+const late = g => D.penetrance.filter(p => PEN.synthese.includes(p.outcome) && p.age >= 70 && p.cumulative_risk != null && p.confidence !== "low" && group(p.ascertainment) === g);
 const span = ps => { const v = ps.map(p => p.cumulative_risk); return v.length ? (Math.min(...v) === Math.max(...v) ? `${fmt(v[0])} %` : `${fmt(Math.min(...v))} à ${fmt(Math.max(...v))} %`) : null; };
 const ages = ps => { const a = ps.map(p => p.age); return Math.min(...a) === Math.max(...a) ? `${fmt(a[0])} ans` : `${fmt(Math.min(...a))}-${fmt(Math.max(...a))} ans`; };
 const lowerFirst = s => /^[A-Z][a-zà-ÿ]/.test(s) ? s[0].toLowerCase() + s.slice(1) : s;
@@ -590,7 +591,7 @@ function obsModifier(m, withRef = true) {
 function obsPenetrance(p, withRef = true) {
   const head = p.cumulative_risk != null && p.age != null ? `${fmt(p.cumulative_risk, 1)} % de malades à ${fmt(p.age)} ans`
     : p.cumulative_risk != null ? `${fmt(p.cumulative_risk, 1)} %` : (p.description || "Observation");
-  const out = { any: "SLA ou DFT", als: "SLA", ftd: "DFT" }[p.outcome] || "";
+  const out = PEN.labels[p.outcome] || "";
   return `<div class="obs"><div class="what">${esc(head)} <span class="muted small">(${esc(out)})</span></div>
     <div style="margin:4px 0"><span class="tag">${esc(GROUP_LABEL[group(p.ascertainment)])}</span>${p.ci ? `<span class="tag">IC ${esc(p.ci)}</span>` : ""}${p.n_carriers ? `<span class="tag">${fmt(p.n_carriers)} porteurs</span>` : ""}${conf(p.confidence)}</div>
     ${p.population ? `<div class="small muted">Qui : ${esc(p.population)}</div>` : ""}
@@ -766,6 +767,7 @@ function renderIncertain() {
 // ---------- pénétrance ----------
 let penOutcome = "any", penGroup = "tous";
 function renderPenetrance() {
+  if (!penSetup) setupPenOutcome();
   $("#pen-legend").innerHTML = Object.entries(GROUP_LABEL).map(([k, v]) => `<span><i style="background:${COLORS[k]}"></i>${v}</span>`).join("");
   const host = $("#pen-chart"); host.innerHTML = "";
   const pts = D.penetrance.filter(p => p.outcome === penOutcome && p.age != null && p.cumulative_risk != null);
@@ -793,11 +795,11 @@ function renderPenetrance() {
     g.addEventListener("keydown", e => { if (e.key === "Enter") openStudy(p.pmid); });
   }
   // explication, calculée
-  const box = (g, title, text) => { const v = late(g); return `<div class="card"><h3><span style="color:${COLORS[g]}">●</span> ${title}</h3><p class="small" style="margin:0 0 8px">${text}</p>${v.length ? `<p class="small muted" style="margin:0">SLA ou DFT, à 70 ans et plus : <b style="color:var(--text)">${span(v)}</b> (${v.length} estimation${v.length > 1 ? "s" : ""} de confiance moyenne ou élevée, vers ${ages(v)}).</p>` : ""}</div>`; };
+  const box = (g, title, text) => { const v = late(g); return `<div class="card"><h3><span style="color:${COLORS[g]}">●</span> ${title}</h3><p class="small" style="margin:0 0 8px">${text}</p>${v.length ? `<p class="small muted" style="margin:0">${esc(PEN.labels[PEN.synthese[0]] || "")}, à 70 ans et plus : <b style="color:var(--text)">${span(v)}</b> (${v.length} estimation${v.length > 1 ? "s" : ""} de confiance moyenne ou élevée, vers ${ages(v)}).</p>` : ""}</div>`; };
   $("#pen-explain").innerHTML =
-    box("malades", "Porteurs repérés à partir de malades", "La plupart des études partent de patients atteints de SLA ou de DFT, puis testent leurs proches. Ces porteurs viennent de familles où la maladie s'est déclarée, souvent plusieurs fois : la pénétrance y paraît très élevée, proche de 100 % à un âge avancé.") +
+    box("malades", "Porteurs repérés à partir de malades", `La plupart des études partent de patients atteints de ${esc(PEN.labels[PEN.synthese[0]] || "")}, puis testent leurs proches. Ces porteurs viennent de familles où la maladie s'est déclarée, souvent plusieurs fois : la pénétrance y paraît très élevée, proche de 100 % à un âge avancé.`) +
     box("population", "Porteurs trouvés en population générale", "Avec le séquençage de grandes <button class=\"g\" data-g=\"biobanque\">biobanques</button>, on trouve des porteurs sans les avoir cherchés. Une partie d'entre eux n'est pas malade à un âge avancé : la pénétrance y est nettement plus basse.") +
-    `<div class="card"><h3>Autres raisons des écarts</h3><p class="small" style="margin:0">Les définitions varient : certaines études comptent seulement la SLA, d'autres toute démence, y compris d'autres causes. Les décès d'autres causes avant la maladie, les petits effectifs et les méthodes de calcul jouent aussi. Ouvrez chaque estimation pour voir comment elle a été obtenue.</p></div>`;
+    `<div class="card"><h3>Autres raisons des écarts</h3><p class="small" style="margin:0">Les définitions varient : certaines études comptent seulement une forme de la maladie, d'autres toute démence, y compris d'autres causes. Les décès d'autres causes avant la maladie, les petits effectifs et les méthodes de calcul jouent aussi. Ouvrez chaque estimation pour voir comment elle a été obtenue.</p></div>`;
   // filtres et liste
   const groups = ["tous", "malades", "population"];
   $("#pen-filter").innerHTML = groups.map(g => `<button class="chip" data-g2="${g}" aria-pressed="${g === penGroup}">${g === "tous" ? "Toutes" : GROUP_LABEL[g]}<span class="n">${g === "tous" ? D.penetrance.length : D.penetrance.filter(p => group(p.ascertainment) === g).length}</span></button>`).join("");
@@ -805,6 +807,18 @@ function renderPenetrance() {
   const list = D.penetrance.filter(p => penGroup === "tous" || group(p.ascertainment) === penGroup)
     .sort((a, b) => (a.age == null) - (b.age == null) || (a.age || 0) - (b.age || 0));
   pager($("#pen-list"), list, p => { const d = document.createElement("div"); d.className = "item"; d.style.padding = "0 14px"; d.innerHTML = obsPenetrance(p); return d; });
+}
+// boutons de maladie : seulement celles qui ont des estimations ; masqués s'il n'y en a qu'une (appelé une fois, D chargé)
+let penSetup = false;
+function setupPenOutcome() {
+  penSetup = true;
+  const has = k => D.penetrance.some(p => p.outcome === k && p.age != null && p.cumulative_risk != null);
+  let keys = Object.keys(PEN.labels).filter(has);
+  if (!keys.length) keys = Object.keys(PEN.labels).filter(k => D.penetrance.some(p => p.outcome === k));
+  if (!keys.length) keys = Object.keys(PEN.labels).slice(0, 1);
+  penOutcome = keys[0];
+  $("#pen-outcome").innerHTML = keys.map(k => `<button data-v="${k}" aria-pressed="${k === penOutcome}">${esc(PEN.labels[k])}</button>`).join("");
+  if (keys.length < 2) $("#pen-outcome").closest(".controls").hidden = true;
 }
 $("#pen-outcome").onclick = e => {
   const b = e.target.closest("button"); if (!b) return;
