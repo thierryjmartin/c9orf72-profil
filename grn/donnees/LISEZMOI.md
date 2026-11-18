@@ -15,7 +15,7 @@ objet. `confidence` : `high` (texte intégral, résultat principal), `medium` (r
 | `findings.csv` | 792 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
 | `penetrance.csv` | 28 | Estimations de pénétrance (risque cumulé à un âge donné) ou descriptions de porteurs restés indemnes. |
 | `modifiers.csv` | 221 | Facteurs qui expliquent une variation entre porteurs (âge de début, forme SLA ou DFT, survie…). |
-| `frequencies.csv` | 595 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
+| `frequencies.csv` | 596 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
 | `treatments.csv` | 15 | Traitements étudiés chez l'humain : un traitement × une population × un critère, avec sa visée et son résultat. |
 | `trials.csv` | 11 | Essais enregistrés sur ClinicalTrials.gov qui mentionnent GRN (sélection automatique, sans lecture) : statut, phase, visée, traitements, promoteur. |
 
