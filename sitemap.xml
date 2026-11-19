@@ -276,6 +276,8 @@
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-age-at-onset-type-de-variant-grn.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-cognitive-behavioural-profile-appartenance-a-la-meme-famille-meme-mutation-grn.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-cognitive-behavioural-profile-taux-de-progranuline.html</loc></url>
+<url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-cognitive-behavioural-profile-tmem106b-rs1990622.html</loc></url>
+<url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-imaging-pattern-appartenance-a-la-meme-famille-meme-mutation-grn.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-imaging-pattern-tmem106b-rs1990622.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-neuropathology-apoe-4.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-other-age-a-l-inclusion.html</loc></url>
@@ -286,9 +288,11 @@
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-other-sexe.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-other-tmem106b-rs1990622.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-other-type-de-variant-grn.html</loc></url>
+<url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-penetrance-sexe.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-penetrance-taux-de-progranuline.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-penetrance-tmem106b-rs1990622.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-survival-progression-sexe.html</loc></url>
+<url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-survival-progression-tmem106b-rs1990622.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/facteur-survival-progression-type-de-variant-grn.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/index.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/issue-age-at-onset.html</loc></url>
@@ -325,6 +329,7 @@
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-biomarqueurs-fluides-vgf-lcr-diminue.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-biomarqueurs-fluides-ykl40-lcr-eleve.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-biomarqueurs-fluides-ykl40-plasmatique-eleve.html</loc></url>
+<url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-cognition-attention-diminuee.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-cognition-attention-visuomotrice-ralentie.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-cognition-capacites-visuospatiales-diminuees.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-cognition-cognition-globale-diminuee.html</loc></url>
@@ -346,6 +351,7 @@
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-comportement-personnalite-motivation-diminuee-domaine-cbi-r-apathie-perte-d-empathie.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-comportement-personnalite-score-cbi-r-augmente.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-imagerie-fonctionnelle-eeg-hyperconnectivite-thalamique.html</loc></url>
+<url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-imagerie-fonctionnelle-eeg-hypometabolisme-frontal-tep-fdg.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-imagerie-structurelle-amincissement-cortical.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-imagerie-structurelle-anomalies-de-signal-de-la-substance-blanche-hypointensites-t1.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-imagerie-structurelle-asymetrie-hemispherique-de-la-substance-grise.html</loc></url>
@@ -374,7 +380,9 @@
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-langage-parole-fluence-semantique-diminuee.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-langage-parole-fluence-verbale-diminuee.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-langage-parole-manque-du-mot-comme-premier-symptome.html</loc></url>
+<url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-moteur-neurophysiologie-facilitation-intracorticale-alteree-smt.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-moteur-neurophysiologie-troubles-de-la-marche-et-chutes-comme-premier-symptome.html</loc></url>
+<url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-psychiatrie-antecedent-de-psychose.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-psychiatrie-humeur-alteree-depression-agitation-irritabilite-domaine-cbi-r.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-psychiatrie-symptomes-neuropsychiatriques-a-l-inclusion.html</loc></url>
 <url><loc>https://thierryjmartin.github.io/c9orf72-profil/grn/s/signe-sommeil-troubles-du-sommeil-domaine-cbi-r.html</loc></url>
