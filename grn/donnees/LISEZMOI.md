@@ -11,12 +11,12 @@ objet. `confidence` : `high` (texte intégral, résultat principal), `medium` (r
 
 | Fichier | Lignes | Contenu |
 |---|---|---|
-| `studies.csv` | 381 | Une ligne par article lu : plan d'étude, cohorte, pays, effectifs de porteurs (`n_presymptomatic` inclut les prodromiques), texte lu (`source_text` : `fulltext`, `abstract` ou `title`), résumé. Un `design` vide = article exclu à la lecture (raison dans `notes`). |
+| `studies.csv` | 387 | Une ligne par article lu : plan d'étude, cohorte, pays, effectifs de porteurs (`n_presymptomatic` inclut les prodromiques), texte lu (`source_text` : `fulltext`, `abstract` ou `title`), résumé. Un `design` vide = article exclu à la lecture (raison dans `notes`). |
 | `findings.csv` | 909 | Signes observés chez les porteurs : un signe × une population × une comparaison. |
 | `penetrance.csv` | 30 | Estimations de pénétrance (risque cumulé à un âge donné) ou descriptions de porteurs restés indemnes. |
-| `modifiers.csv` | 253 | Facteurs qui expliquent une variation entre porteurs (âge de début, forme SLA ou DFT, survie…). |
-| `frequencies.csv` | 659 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
-| `treatments.csv` | 18 | Traitements étudiés chez l'humain : un traitement × une population × un critère, avec sa visée et son résultat. |
+| `modifiers.csv` | 255 | Facteurs qui expliquent une variation entre porteurs (âge de début, forme SLA ou DFT, survie…). |
+| `frequencies.csv` | 663 | Fréquences descriptives : de la mutation dans un groupe, d'un trait chez les porteurs, comparaisons avec les non-porteurs ou d'autres gènes. |
+| `treatments.csv` | 20 | Traitements étudiés chez l'humain : un traitement × une population × un critère, avec sa visée et son résultat. |
 | `trials.csv` | 11 | Essais enregistrés sur ClinicalTrials.gov qui mentionnent GRN (sélection automatique, sans lecture) : statut, phase, visée, traitements, promoteur. |
 
 ## Colonnes principales
